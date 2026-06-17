@@ -443,24 +443,24 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
   <div class="wrap">
     <p class="eyebrow rv">Consultation</p>
     <h2 class="rv d1">전담 매니저가<br>직접 연락드립니다</h2>
-    <form class="c-form rv" onsubmit="return false">
+    <form class="c-form rv" id="consultForm">
       <div class="c-row">
         <div class="c-field">
           <label>성함 <span class="req">*</span></label>
-          <input type="text" placeholder="홍길동">
+          <input type="text" name="name" placeholder="홍길동" required>
         </div>
         <div class="c-field">
           <label>연락처 <span class="req">*</span></label>
-          <input type="tel" placeholder="010-0000-0000">
+          <input type="tel" name="phone" placeholder="010-0000-0000" required>
         </div>
       </div>
       <div class="c-field">
         <label>이메일</label>
-        <input type="email" placeholder="example@email.com">
+        <input type="email" name="email" placeholder="example@email.com">
       </div>
       <div class="c-field">
         <label>문의 내용</label>
-        <textarea placeholder="관심 카드, 문의 사항을 자유롭게 작성해 주세요."></textarea>
+        <textarea name="message" placeholder="관심 카드, 문의 사항을 자유롭게 작성해 주세요."></textarea>
       </div>
       <div class="c-agree">
         <label class="c-agree-row">
@@ -471,6 +471,7 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
       </div>
       <button class="c-btn" type="submit">상담 신청하기</button>
     </form>
+    <p id="consultMsg" style="margin-top:18px;font-size:15px;color:var(--ink-soft);min-height:1.2em"></p>
   </div>
 </section>
 
@@ -772,6 +773,43 @@ if(minhwaStage) minhwaIO.observe(minhwaStage);
 /* nav */
 const nav = document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+/* consultation form submit */
+const consultForm = document.getElementById('consultForm');
+const consultMsg = document.getElementById('consultMsg');
+consultForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const agreed = consultForm.querySelector('.c-agree-chk').checked;
+  if(!agreed){ consultMsg.style.color='#b22222'; consultMsg.textContent='개인정보 수집·이용에 동의해 주세요.'; return; }
+  const btn = consultForm.querySelector('.c-btn');
+  const data = {
+    name: consultForm.name.value.trim(),
+    phone: consultForm.phone.value.trim(),
+    email: consultForm.email.value.trim(),
+    message: consultForm.message.value.trim()
+  };
+  btn.disabled = true; btn.style.opacity = '.6';
+  consultMsg.style.color = 'var(--ink-soft)'; consultMsg.textContent = '신청을 접수하는 중입니다…';
+  try{
+    const r = await fetch('/api/consult', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
+    });
+    const j = await r.json();
+    if(r.ok && j.ok){
+      consultForm.reset();
+      consultMsg.style.color = 'var(--gold-deep)';
+      consultMsg.textContent = '상담 신청이 접수되었습니다. 전담 매니저가 곧 연락드리겠습니다.';
+    } else {
+      consultMsg.style.color = '#b22222';
+      consultMsg.textContent = j.error || '접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+    }
+  } catch(err){
+    consultMsg.style.color = '#b22222';
+    consultMsg.textContent = '네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+  } finally {
+    btn.disabled = false; btn.style.opacity = '';
+  }
+});
 </script>
 </body>
 </html>
