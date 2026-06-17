@@ -761,14 +761,36 @@ function switchMinhwa(n){
   }, MINHWA_FADE);
 }
 
+// ensure all videos are muted (required for autoplay) + iOS inline
+minhwaVids.forEach(v=>{ v.muted = true; v.defaultMuted = true; v.setAttribute('playsinline',''); });
+
+let minhwaStarted = false;
+function startMinhwa(){
+  if(minhwaStarted) return;
+  const p = minhwaVids[0].play();
+  if(p && p.then){
+    p.then(()=>{ minhwaStarted = true; })
+     .catch(()=>{ /* autoplay blocked — will retry on first user gesture */ });
+  } else { minhwaStarted = true; }
+  clearTimeout(minhwaTimer);
+  minhwaTimer = setTimeout(()=>switchMinhwa(1), MINHWA_DUR);
+}
+
 const minhwaIO = new IntersectionObserver(([e])=>{
   if(!e.isIntersecting) return;
-  minhwaVids[0].play().catch(()=>{});
-  minhwaTimer = setTimeout(()=>switchMinhwa(1), MINHWA_DUR);
+  startMinhwa();
   minhwaIO.unobserve(e.target);
 },{threshold:.2});
 const minhwaStage = document.getElementById('minhwaStage');
 if(minhwaStage) minhwaIO.observe(minhwaStage);
+
+// Fallback: if autoplay was blocked, kick off playback on the first user gesture.
+const MINHWA_GESTURES = ['pointerdown','touchstart','scroll','keydown'];
+function minhwaGestureStart(){
+  if(!minhwaStarted) minhwaVids[0].play().then(()=>{ minhwaStarted = true; }).catch(()=>{});
+  MINHWA_GESTURES.forEach(ev=>removeEventListener(ev, minhwaGestureStart));
+}
+MINHWA_GESTURES.forEach(ev=>addEventListener(ev, minhwaGestureStart, {passive:true}));
 
 /* nav */
 const nav = document.getElementById('nav');
