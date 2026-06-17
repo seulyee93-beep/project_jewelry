@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jewelry Card — 쓰임을 넘어, 당신의 품격을 증명하는 단 한 장</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0A0805;
+  --maroon:#1F1109;
+  --brown:#472E1F;
+  --paper:#F6F0DF;
+  --paper-soft:#EFE7D2;
+  --gold:#C9A85C;
+  --gold-deep:#AF9042;
+  --ink:#241B12;
+  --ink-soft:#5A4D3E;
+  --cream-text:#EFE6D2;
+  --cream-dim:rgba(239,230,210,.55);
+  --line-dark:rgba(201,168,92,.25);
+  --line-paper:rgba(90,77,62,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hahmlet',serif;background:var(--black);color:var(--cream-text);
+  letter-spacing:-.02em;line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px}
+.num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(36px);transition:opacity 1.1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.15s}.rv.d2{transition-delay:.3s}.rv.d3{transition-delay:.45s}
+
+/* mobile-only line break */
+.m-br{display:none}
+@media(max-width:640px){.m-br{display:block}}
+/* desktop-only line break (hidden on mobile) */
+.d-br{display:block}
+@media(max-width:640px){.d-br{display:none}}
+/* hidden on mobile */
+.m-hide{display:inline}
+@media(max-width:640px){.m-hide{display:none}}
+
+/* ============ NAV ============ */
+nav{position:fixed;inset:0 0 auto 0;z-index:100;padding:22px 0;
+  transition:background .4s,padding .4s}
+nav.scrolled{background:rgba(10,8,5,.88);backdrop-filter:blur(10px);padding:14px 0}
+nav .inner{max-width:1280px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-size:17px;letter-spacing:0;font-weight:600;color:var(--cream-text);text-decoration:none;text-transform:uppercase;white-space:nowrap}
+nav .logo b{color:var(--gold)}
+nav ul{display:flex;gap:36px;list-style:none}
+nav a{color:var(--cream-dim);text-decoration:none;font-size:15px;letter-spacing:.18em;transition:color .3s}
+nav a:hover{color:var(--gold)}
+@media(max-width:640px){nav ul{display:none}}
+
+/* ============ HERO ============ */
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;position:relative;
+  background:radial-gradient(85% 70% at 50% 100%, #2A1707 0%, #150D06 45%, var(--black) 100%)}
+.hero .eyebrow{font-size:15px;letter-spacing:.55em;color:var(--gold);text-transform:uppercase;font-weight:500}
+.hero h1{margin-top:30px;font-size:clamp(34px,5.4vw,64px);font-weight:400;line-height:1.5;letter-spacing:.02em}
+.hero h1 b{font-weight:600;color:#fff}
+.hero .sub{margin-top:28px;font-size:clamp(16px,1.6vw,19px);color:var(--cream-dim);font-weight:300;line-height:2}
+.hero .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  font-size:13px;letter-spacing:.4em;color:var(--cream-dim);text-transform:uppercase}
+.hero .scroll-hint::after{content:"";display:block;width:1px;height:46px;margin:12px auto 0;
+  background:linear-gradient(var(--gold),transparent);animation:drop 2s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ============ PHILOSOPHY ============ */
+.philo{position:relative;overflow:hidden}
+.philo-text-wrap{
+  background:linear-gradient(180deg,var(--black) 0%,#16100A 50%,var(--black) 100%);
+  padding:clamp(110px,16vh,180px) 0}
+.philo-inner-grid{display:grid;grid-template-columns:auto 1fr;
+  gap:clamp(40px,8vw,130px);align-items:center}
+.v-text{writing-mode:vertical-lr;text-orientation:mixed;font-size:clamp(28px,3.4vw,46px);
+  font-weight:400;line-height:2.1;letter-spacing:.18em;height:clamp(340px,46vw,560px);color:#F4ECDB}
+.v-text b{font-weight:600;color:var(--gold)}
+.philo .copy{max-width:560px}
+.philo .copy p{font-size:18px;color:var(--cream-dim);font-weight:300;line-height:2.15;word-break:keep-all}
+.philo .copy p+p{margin-top:26px}
+.philo .copy .strong{color:var(--cream-text);font-weight:400}
+
+/* minhwa video stage */
+.minhwa-stage{width:100%;height:clamp(380px,58vw,860px);
+  background:var(--paper-soft);position:relative;overflow:hidden}
+.minhwa-vid{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;opacity:0;transition:opacity .6s ease}
+.minhwa-vid.minhwa-active{opacity:1}
+.minhwa-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;
+  height:60px;background:linear-gradient(transparent,var(--paper-soft));z-index:1;pointer-events:none}
+
+@media(max-width:760px){
+  .philo-inner-grid{grid-template-columns:1fr;gap:48px}
+  .v-text{height:auto;writing-mode:horizontal-tb;font-size:clamp(26px,6.4vw,32px);line-height:1.8;letter-spacing:.04em}
+  .minhwa-stage{height:80vw;min-height:280px}
+}
+
+/* ============ SIGNATURE ============ */
+.signature{padding:clamp(90px,12vh,150px) 0 0;background:var(--paper-soft)}
+.signature .head{text-align:center;max-width:760px;margin:0 auto;padding:0 28px}
+.signature .head .eyebrow{font-size:15px;letter-spacing:.5em;color:var(--gold-deep);text-transform:uppercase}
+.signature .head h2{margin-top:24px;font-size:clamp(28px,3.8vw,46px);font-weight:400;line-height:1.6;color:var(--ink)}
+.signature .head p.desc{margin-top:22px;font-size:17px;color:var(--ink-soft);font-weight:300;line-height:1.7;word-break:keep-all}
+
+/* tabs — mobile: equal-width, all 5 visible in one row */
+.tabs{display:flex;gap:0;justify-content:stretch;margin:0 auto;max-width:980px;
+  overflow-x:hidden;padding:24px 8px 0;scrollbar-width:none;position:relative;z-index:1}
+.tabs::-webkit-scrollbar{display:none}
+@media(min-width:860px){.tabs{justify-content:center;gap:4px;padding:34px 28px 0;overflow-x:auto}}
+.tab-btn{flex:1 1 0;min-width:0;padding:12px 2px;font-size:15px;font-weight:500;color:var(--ink-soft);
+  border-bottom:2px solid transparent;transition:.3s;white-space:nowrap;letter-spacing:.02em;text-align:center;
+  overflow:hidden;text-overflow:ellipsis}
+@media(min-width:860px){
+  .tab-btn{flex:0 0 auto;padding:14px 28px;font-size:17px;letter-spacing:.06em;white-space:nowrap;overflow:visible;text-overflow:clip}
+}
+.tab-btn.active{color:var(--brown);border-bottom-color:var(--gold-deep)}
+.tab-btn:hover{color:var(--ink)}
+
+.paper{margin-top:60px;background:
+  radial-gradient(140% 100% at 50% 0%,rgba(255,255,255,.5) 0%,rgba(255,255,255,0) 60%),
+  var(--paper);
+  color:var(--ink);border-radius:4px 4px 0 0;position:relative;overflow:hidden}
+.paper::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:radial-gradient(rgba(120,100,60,.06) 1px,transparent 1px);background-size:5px 5px}
+.panel{display:none;position:relative;padding:clamp(56px,7vw,110px) clamp(24px,6vw,90px) clamp(80px,9vw,130px)}
+.panel.active{display:block;animation:fade .7s ease}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+/* bignum removed */
+.panel .bignum{display:none}
+.panel .grid{display:grid;grid-template-columns:1fr;gap:56px;position:relative}
+@media(min-width:960px){.panel .grid{grid-template-columns:430px 1fr;gap:clamp(56px,7vw,110px);align-items:start}}
+
+/* display */
+.stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:10px 0 0;perspective:1200px}
+.card-wrap{position:relative;width:min(340px,82%);transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.card-wrap.show-back{transform:rotateY(180deg)}
+.card-front{width:100%;backface-visibility:hidden;display:block}
+.card-back{position:absolute;inset:0;width:100%;backface-visibility:hidden;transform:rotateY(180deg);display:block}
+.card-wrap.show-back .spot{visibility:hidden;pointer-events:none}
+.stage .plate-label{margin-top:18px;text-align:center;color:var(--brown);
+  font-size:13px;letter-spacing:.35em;text-transform:uppercase;font-weight:600}
+/* symbol hotspots */
+.spot{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;
+  background:var(--brown);border:2px solid #fff;color:#fff;
+  font-size:14px;font-weight:600;line-height:1;padding:0;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(40,25,8,.4);transition:.25s;z-index:2}
+.spot::after{content:"";position:absolute;inset:-7px;border-radius:50%;
+  border:1px solid rgba(71,46,31,.5);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{transform:scale(.7);opacity:1}100%{transform:scale(1.25);opacity:0}}
+.spot:hover{background:var(--gold-deep);color:#fff}
+.spot.active{background:var(--gold-deep);color:#fff;box-shadow:0 0 0 4px rgba(175,144,66,.35)}
+.spot.active::after{animation:none;opacity:0}
+/* popover */
+.spot-pop{position:fixed;width:min(240px,62vw);background:#fff;border:1px solid var(--line-paper);
+  box-shadow:0 16px 40px rgba(40,25,8,.22);padding:14px 16px;z-index:999;text-align:left}
+.spot-pop::before{content:"";position:absolute;width:10px;height:10px;background:#fff;
+  transform:rotate(45deg);border:1px solid var(--line-paper)}
+.spot-pop.side-r::before{top:14px;left:-6px;border-right:none;border-top:none}
+.spot-pop.side-l::before{top:14px;right:-6px;border-left:none;border-bottom:none}
+.spot-pop.side-b::before{top:-6px;left:50%;margin-left:-5px;border-bottom:none;border-right:none}
+.spot-pop .t{font-size:15px;font-weight:600;color:var(--brown);letter-spacing:.04em}
+.spot-pop .t .pn{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-deep);margin-right:7px;font-size:18px}
+.spot-pop .d{margin-top:6px;font-size:14px;color:var(--ink-soft);line-height:1.85}
+.materials{margin-top:30px}
+.materials .m-title{font-size:15px;letter-spacing:.35em;color:var(--brown);font-weight:600;text-transform:uppercase}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.swatch{border:1px solid var(--line-paper);background:rgba(255,255,255,.45);padding:14px 8px 12px;
+  transition:.25s;text-align:center;cursor:pointer}
+.swatch .dot{width:22px;height:22px;border-radius:50%;margin:0 auto 8px;border:1px solid rgba(0,0,0,.15)}
+.swatch span{font-size:13px;color:var(--ink-soft);letter-spacing:.04em;display:block;line-height:1.4}
+.swatch.active{border-color:var(--gold-deep);background:#fff;box-shadow:0 10px 24px rgba(140,110,50,.18)}
+.swatch.active span{font-weight:700;color:var(--brown)}
+
+/* narrative */
+.story .label{font-size:16px;letter-spacing:.14em;color:var(--gold-deep);font-weight:600}
+.story h3{font-size:clamp(28px,3.2vw,42px);font-weight:500;line-height:1.5;margin-top:14px;color:var(--ink)}
+.story .body{margin-top:28px;font-size:18px;color:var(--ink-soft);font-weight:300;line-height:2.1;max-width:60ch}
+.story .body p+p{margin-top:16px}
+
+/* ── 디자인에 담긴 상징 — card grid redesign ── */
+.sym{margin-top:44px;border-top:1px solid var(--line-paper);padding-top:32px}
+.sym h4{font-size:15px;letter-spacing:.35em;color:var(--brown);font-weight:600;text-transform:uppercase;margin-bottom:20px}
+.sym-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:540px){.sym-grid{grid-template-columns:1fr}}
+.sym-card{background:rgba(71,46,31,.07);
+  padding:16px;display:flex;gap:14px;align-items:flex-start;
+  transition:background .25s}
+.sym-card.highlight{background:rgba(175,144,66,.13);border-color:rgba(175,144,66,.45);border-left-color:var(--gold-deep)}
+.sym-card .sym-num{font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:26px;color:var(--gold-deep);line-height:1.1;flex:0 0 auto;min-width:28px}
+.sym-card .sym-body b{display:block;color:var(--ink);font-size:14px;font-weight:600;line-height:1.4;margin-bottom:4px}
+.sym-card .sym-body span{display:block;font-size:13px;color:var(--ink-soft);line-height:1.75}
+
+.spec{margin-top:40px;padding:24px 28px;display:grid;gap:12px;background:rgba(255,255,255,.4)}
+.spec .row{display:flex;gap:18px;font-size:14px;line-height:1.8}
+.spec .row dt{flex:0 0 92px;color:var(--brown);font-weight:600;letter-spacing:.04em}
+.spec .row dd{color:var(--ink-soft)}
+
+/* ============ BENEFITS ============ */
+.benefits{padding:clamp(100px,14vh,170px) 0 clamp(90px,12vh,150px);
+  background:linear-gradient(180deg,var(--maroon) 0%,var(--black) 30%,var(--black) 100%)}
+.benefits .head{text-align:center;max-width:680px;margin:0 auto;padding:0 28px}
+.benefits .head .eyebrow{font-size:15px;letter-spacing:.5em;color:var(--gold);text-transform:uppercase}
+.benefits .head h2{margin-top:24px;font-size:clamp(28px,3.8vw,46px);font-weight:400;line-height:1.6}
+.b-list{max-width:880px;margin:70px auto 0;padding:0 28px}
+.b-item{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,5vw,60px);align-items:center;
+  padding:34px 8px;border-top:1px solid var(--line-dark)}
+@media(max-width:640px){
+  .b-item{display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 0;text-align:center}
+  .b-left{min-width:0!important;width:44px!important;max-width:44px!important;align-items:center!important;margin-left:0}
+}
+.b-item:last-child{border-bottom:1px solid var(--line-dark)}
+.b-left{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:70px}
+.b-icon{width:44px;height:44px;color:var(--gold);opacity:.85;flex:0 0 auto}
+.b-icon svg{width:44px;height:44px}
+.b-item .bn{display:none}
+.b-item h4{font-size:clamp(20px,2.2vw,25px);font-weight:500;color:var(--cream-text);padding-top:4px}
+.b-item p{margin-top:10px;font-size:17px;color:var(--cream-dim);font-weight:300;line-height:2}
+
+/* fee — no borders, horizontal on desktop */
+.fee-wrap{max-width:780px;margin:80px auto 0;padding:56px 48px}
+@media(max-width:640px){.fee-wrap{margin:80px 28px 0;padding:48px 28px}}
+.fee{display:flex;gap:clamp(40px,8vw,120px);justify-content:center;flex-wrap:wrap;text-align:center}
+@media(min-width:640px){.fee{flex-wrap:nowrap;align-items:center}}
+.fee dt{font-size:15px;letter-spacing:.3em;color:var(--cream-dim);text-transform:uppercase}
+.fee dd{margin-top:12px;font-size:clamp(28px,3.4vw,38px);font-weight:500;color:var(--gold)}
+
+/* b-note — mobile center, desktop left */
+.b-note{max-width:780px;margin:20px auto 0;padding:0 48px;
+  font-size:15px;color:rgba(239,230,210,.4);font-weight:300;text-align:center}
+@media(max-width:640px){.b-note{margin:20px 0 0;padding:0;text-align:center}}
+
+/* consultation */
+.consult{background:var(--paper-soft);padding:clamp(80px,12vh,140px) 0;text-align:center}
+.consult .eyebrow{font-size:15px;letter-spacing:.4em;color:var(--gold-deep);text-transform:uppercase}
+.consult h2{margin-top:20px;font-size:clamp(26px,3.2vw,42px);font-weight:400;color:var(--ink);line-height:1.5}
+.c-form{display:grid;gap:16px;max-width:680px;margin:32px auto 0;text-align:left}
+.c-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:640px){.c-row{grid-template-columns:1fr}}
+.c-field label{display:block;font-size:14px;font-weight:700;letter-spacing:.05em;color:var(--ink);margin-bottom:6px}
+.c-field label .req{color:#b22222;margin-left:3px}
+.c-field input,.c-field textarea{width:100%;border:none;border-bottom:1px solid rgba(36,27,18,.25);background:transparent;padding:14px 0;font-size:16px;font-family:inherit;color:var(--ink);outline:none;transition:border-color .2s;box-sizing:border-box}
+.c-field input::placeholder,.c-field textarea::placeholder{color:rgba(36,27,18,.3);font-weight:300}
+.c-field input:focus,.c-field textarea:focus{border-color:var(--gold-deep)}
+.c-field textarea{height:130px;resize:none}
+.c-agree{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.c-agree-row{display:flex;align-items:center;gap:12px;cursor:pointer}
+.c-agree-chk{width:18px;height:18px;border:1px solid rgba(36,27,18,.3);appearance:none;-webkit-appearance:none;cursor:pointer;flex-shrink:0;position:relative;transition:background .2s,border-color .2s}
+.c-agree-chk:checked{background:var(--gold-deep);border-color:var(--gold-deep)}
+.c-agree-chk:checked::after{content:'';position:absolute;left:5px;top:2px;width:5px;height:9px;border:1.5px solid #fff;border-top:none;border-left:none;transform:rotate(40deg)}
+.c-agree-txt{font-size:15px;color:var(--ink)}
+.c-agree-txt .req-tag{color:#b22222;font-size:13px;margin-left:4px}
+.c-agree-desc{font-size:12px;color:var(--ink-soft);padding-left:30px;line-height:1.7}
+.c-btn{width:100%;padding:22px;background:var(--gold-deep);color:var(--paper-soft);font-size:15px;letter-spacing:.2em;text-align:center;cursor:pointer;border:none;font-family:inherit;margin-top:32px;transition:opacity .2s}
+.c-btn:hover{opacity:.82}
+
+footer{background:#070503;padding:40px 0;text-align:center;border-top:1px solid rgba(201,168,92,.15)}
+@media(max-width:640px){footer{padding-left:28px;padding-right:28px}}
+footer .logo{font-size:16px;letter-spacing:.5em;color:var(--gold);font-weight:600;text-transform:uppercase}
+footer p{margin-top:16px;font-size:15px;line-height:1.8;color:rgba(239,230,210,.4);font-weight:300}
+footer .footer-en{font-size:15px;letter-spacing:.08em;color:#efe6d2;margin-top:12px}
+footer .footer-ko{font-size:14px;color:#efe6d2;margin-top:4px}
+footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="inner">
+    <a class="logo" href="#top">Jewelry <b>Card</b></a>
+    <ul>
+      <li><a href="#philo">BRAND</a></li>
+      <li><a href="#signature">SIGNATURE</a></li>
+      <li><a href="#benefits">BENEFIT</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ 1. HERO ============ -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow rv">Jewelry Card</p>
+    <h1 class="rv d1">쓰임을 넘어,<br><b>당신의 품격을<br class="m-br">증명하는 단 한 장</b></h1>
+    <p class="sub rv d2">묵직한 메탈의 존재감,<br class="m-br"> 랩다이아몬드의 맑은 광채,<br>오로라 빛 자개와 한국적 문양을<br class="m-br"> 한 장에 담았습니다.</p>
+  </div>
+  <p class="scroll-hint">Scroll</p>
+</header>
+
+<!-- ============ 2. 브랜드 철학 ============ -->
+<section class="philo" id="philo">
+  <div class="philo-text-wrap">
+    <div class="wrap philo-inner-grid">
+      <h2 class="v-text rv">한 장의 카드는<br><b>하루아침에</b><br>완성되지 않는다</h2>
+      <div class="copy">
+        <p class="rv d1"><span class="strong">손끝의 감촉, 표면의 균형, 빛의 흐름,</span> 그리고 시간이 지나도 유지되는 밀도까지.<br class="m-br">하이엔드 오브제는 보이지 않는 기준들이 쌓여서야 비로소 하나의 완성에 이릅니다.</p>
+        <p class="rv d2">선조들이 작은 장신구와 문양 속에 간절한<br class="m-br">안녕과 번영, 고결한 명예와 사랑의 마음을 담았던 것처럼 —<br class="m-br">현대의 우리에게 가장 밀접한 오브제인<br class="m-br">'카드'에 한국적 상징의 정수를 녹여냈습니다.</p>
+        <p class="rv d3">Jewelry Card는 외형을 꾸미는 데서 멈추지 않고, 매일 꺼내어도 가치가 흐려지지 않도록<br class="m-br">구조와 소재, 표면과 가공의 완성도를 정교하게 설계했습니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="minhwa-stage" id="minhwaStage">
+    <video class="minhwa-vid minhwa-active" src="assets/공작.mp4" muted playsinline preload="auto"></video>
+    <video class="minhwa-vid" src="assets/나비.mp4" muted playsinline preload="auto"></video>
+    <video class="minhwa-vid" src="assets/어락도.mp4" muted playsinline preload="auto"></video>
+  </div>
+</section>
+
+<!-- ============ 3. 시그니처 ============ -->
+<section class="signature" id="signature">
+  <div class="head">
+    <p class="eyebrow rv">Five Signatures</p>
+    <h2 class="rv d1">지갑 속 장식이 아니라,<br>삶의 태도를 보여주는 상징</h2>
+    <p class="desc rv d2">다섯 가지 시그니처는<br class="m-br">서로 다른 문양의 변주가 아닙니다.<br>각기 다른 기원과 정서,<br class="m-br">그리고 소유의 이유를 품은 선택입니다.</p>
+  </div>
+  <div class="paper">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="wrap" id="panels" style="padding:0"></div>
+  </div>
+</section>
+
+<!-- ============ 4. 혜택 ============ -->
+<section class="benefits" id="benefits">
+  <div class="head">
+    <p class="eyebrow rv">Benefits</p>
+    <h2 class="rv d1">쓰임을 넘어,<br>가치와 혜택이 되는 단 한 장</h2>
+  </div>
+  <div class="b-list">
+
+    <div class="b-item rv">
+      <div class="b-left">
+        <div class="b-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="14.25" stroke="#C9A85C" stroke-width="1.5"/>
+            <path d="M21.0919 13.9687C21.4494 13.1938 22.5506 13.1938 22.9081 13.9687L24.5869 17.6084C24.7326 17.9242 25.0319 18.1417 25.3772 18.1826L29.3576 18.6546C30.205 18.755 30.5454 19.8024 29.9189 20.3818L26.976 23.1032C26.7207 23.3394 26.6064 23.6912 26.6742 24.0323L27.4553 27.9637C27.6216 28.8007 26.7307 29.448 25.9861 29.0312L22.4884 27.0734C22.185 26.9035 21.815 26.9035 21.5116 27.0734L18.0139 29.0312C17.2693 29.448 16.3784 28.8007 16.5447 27.9637L17.3258 24.0323C17.3936 23.6912 17.2793 23.3394 17.024 23.1032L14.0811 20.3818C13.4546 19.8024 13.795 18.755 14.6424 18.6546L18.6228 18.1826C18.9681 18.1417 19.2674 17.9242 19.4131 17.6084L21.0919 13.9687Z" fill="#C9A85C"/>
+          </svg>
+        </div>
+        <span class="bn num">01</span>
+      </div>
+      <div>
+        <h4>코나 웰컴 마일리지</h4>
+        <p>1년차 20,000마일리지 즉시 지급<span class="m-hide"> · </span><br class="m-br">2~5년차 매년 10,000마일리지 즉시 적립</p>
+      </div>
+    </div>
+
+    <div class="b-item rv">
+      <div class="b-left">
+        <div class="b-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="14.25" stroke="#C9A85C" stroke-width="1.5"/>
+            <path d="M16 28V17L22 24.6154L28 17V28" stroke="#C9A85C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="bn num">02</span>
+      </div>
+      <div>
+        <h4>코나 마일리지 적립</h4>
+        <p>결제금액 2,000원당 1마일리지,<br class="m-br">연 최대 50,000마일리지<br class="d-br"> 적립된 마일리지는<br class="m-br">항공권 · 골프 패키지 등으로 교환</p>
+      </div>
+    </div>
+
+    <div class="b-item rv">
+      <div class="b-left">
+        <div class="b-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M29.875 10.5H14.125L8 18.7681L22 33.5L36 18.7681L29.875 10.5Z" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 18.7451H36" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.8571 10.5L16 18.9038L22 33.5" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24.1429 10.5L28 18.9038L22 33.5" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="bn num">03</span>
+      </div>
+      <div>
+        <h4>프리미엄 한옥호텔 할인</h4>
+        <p>더한옥헤리티지 30% 숙박할인,<br class="m-br">연 최대 100만 원 (강원도 영월)</p>
+      </div>
+    </div>
+
+    <div class="b-item rv">
+      <div class="b-left">
+        <div class="b-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 20V17C32 14.7909 30.2091 13 28 13H16C13.7909 13 12 14.7909 12 17V20" stroke="#C9A85C" stroke-width="1.5"/>
+            <mask id="path-2-inside-1_616_18705" fill="white">
+            <path d="M32.1787 18.9297C34.8413 18.9299 37 21.101 37 23.7637C36.9998 25.8674 35.6587 27.6649 33.7852 28.3379V30.7295C33.785 31.9442 32.8007 32.9285 31.5859 32.9287H12.4141C11.1992 32.9287 10.2141 31.9443 10.2139 30.7295V28.3369C8.34082 27.6637 7.00016 25.867 7 23.7637C7 21.1009 9.15855 18.9298 11.8213 18.9297C14.484 18.9297 16.6425 21.0882 16.6426 23.751V26.4678H27.3564V23.751C27.3565 21.0882 29.516 18.9297 32.1787 18.9297Z"/>
+            </mask>
+            <path d="M32.1787 18.9297L32.1788 17.4297H32.1787V18.9297ZM37 23.7637L38.5 23.7638V23.7637H37ZM33.7852 28.3379L33.2781 26.9262L32.2852 27.2829V28.3379H33.7852ZM33.7852 30.7295L35.2852 30.7297V30.7295H33.7852ZM31.5859 32.9287V34.4287H31.5862L31.5859 32.9287ZM12.4141 32.9287L12.414 34.4287H12.4141V32.9287ZM10.2139 30.7295H8.71387V30.7297L10.2139 30.7295ZM10.2139 28.3369H11.7139V27.2821L10.7212 26.9253L10.2139 28.3369ZM7 23.7637H5.5V23.7638L7 23.7637ZM11.8213 18.9297V17.4297H11.8212L11.8213 18.9297ZM16.6426 23.751H18.1426V23.7509L16.6426 23.751ZM16.6426 26.4678H15.1426V27.9678H16.6426V26.4678ZM27.3564 26.4678V27.9678H28.8564V26.4678H27.3564ZM27.3564 23.751L25.8564 23.7509V23.751H27.3564ZM32.1787 18.9297L32.1786 20.4297C34.0079 20.4298 35.5 21.9244 35.5 23.7637H37H38.5C38.5 20.2776 35.6748 17.43 32.1788 17.4297L32.1787 18.9297ZM37 23.7637L35.5 23.7636C35.4999 25.2156 34.5739 26.4608 33.2781 26.9262L33.7852 28.3379L34.2922 29.7496C36.7435 28.8691 38.4998 26.5191 38.5 23.7638L37 23.7637ZM33.7852 28.3379H32.2852V30.7295H33.7852H35.2852V28.3379H33.7852ZM33.7852 30.7295L32.2852 30.7292C32.2851 31.1157 31.9722 31.4286 31.5857 31.4287L31.5859 32.9287L31.5862 34.4287C33.6291 34.4284 35.2848 32.7727 35.2852 30.7297L33.7852 30.7295ZM31.5859 32.9287V31.4287H12.4141V32.9287V34.4287H31.5859V32.9287ZM12.4141 32.9287L12.4141 31.4287C12.027 31.4287 11.7139 31.1152 11.7139 30.7292L10.2139 30.7295L8.71387 30.7297C8.71421 32.7735 10.3714 34.4287 12.414 34.4287L12.4141 32.9287ZM10.2139 30.7295H11.7139V28.3369H10.2139H8.71387V30.7295H10.2139ZM10.2139 28.3369L10.7212 26.9253C9.42557 26.4596 8.50011 25.2151 8.5 23.7636L7 23.7637L5.5 23.7638C5.50021 26.5189 7.25606 28.8677 9.7065 29.7485L10.2139 28.3369ZM7 23.7637H8.5C8.5 21.9242 9.99208 20.4297 11.8213 20.4297L11.8213 18.9297L11.8212 17.4297C8.32503 17.4298 5.5 20.2776 5.5 23.7637H7ZM11.8213 18.9297V20.4297C13.6556 20.4297 15.1425 21.9166 15.1426 23.751L16.6426 23.751L18.1426 23.7509C18.1425 20.2598 15.3125 17.4297 11.8213 17.4297V18.9297ZM16.6426 23.751H15.1426V26.4678H16.6426H18.1426V23.751H16.6426ZM16.6426 26.4678V27.9678H27.3564V26.4678V24.9678H16.6426V26.4678ZM27.3564 26.4678H28.8564V23.751H27.3564H25.8564V26.4678H27.3564ZM27.3564 23.751L28.8564 23.751C28.8565 21.917 30.344 20.4297 32.1787 20.4297V18.9297V17.4297C28.6879 17.4297 25.8565 20.2594 25.8564 23.7509L27.3564 23.751Z" fill="#C9A85C" mask="url(#path-2-inside-1_616_18705)"/>
+            <rect x="14" y="31.7461" width="1.5" height="3.25352" fill="#C9A85C"/>
+            <rect x="28.5" y="31.7461" width="1.5" height="3.25352" fill="#C9A85C"/>
+            <path d="M26.6154 10L35.3291 7.74658C35.5738 7.68265 35.7576 7.53498 35.8803 7.30356C36.003 7.07215 36.0314 6.83626 35.9654 6.59589C35.8995 6.35553 35.7569 6.17589 35.5376 6.05699C35.3183 5.93808 35.0856 5.90995 34.8395 5.9726L32.4408 6.59589L28.5246 3L27.1539 3.33562L29.5037 7.36301L27.1539 7.93836L25.9301 7.0274L25 7.26712L26.6154 10Z" fill="#C9A85C"/>
+          </svg>
+        </div>
+        <span class="bn num">04</span>
+      </div>
+      <div>
+        <h4>공항 라운지</h4>
+        <p>연 4회 무료 이용 · 인천 T1/T2,<br class="m-br">김포, 김해 · 마티나 골드 라운지(인천 T2)</p>
+      </div>
+    </div>
+
+    <div class="b-item rv">
+      <div class="b-left">
+        <div class="b-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.5714 31.2305H10C7.79086 31.2305 6 29.4396 6 27.2305V23.2305C6 21.0213 7.79086 19.2305 10 19.2305H34C36.2091 19.2305 38 21.0213 38 23.2305V27.2305C38 29.4396 36.2091 31.2305 34 31.2305H32.9714M17.4286 31.2305H26.5714" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M33.5 19L31.8417 12.9436C31.3657 11.2053 29.786 10 27.9837 10H16.0163C14.214 10 12.6343 11.2053 12.1583 12.9436L10.5 19" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="14.5" cy="30.5" r="2.75" stroke="#C9A85C" stroke-width="1.5"/>
+            <circle cx="29.5" cy="30.5" r="2.75" stroke="#C9A85C" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="bn num">05</span>
+      </div>
+      <div>
+        <h4>프리미엄 호텔 발렛파킹</h4>
+        <p>연 12회 무료 이용 · 그랜드워커힐, 반얀트리,<br class="m-br">앰배서더 서울 등<br class="d-br">인천공항 T1/T2 · 김포공항</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="fee-wrap rv">
+    <dl class="fee">
+      <div><dt>Annual Fee · 연회비</dt><dd>1,000,000원</dd></div>
+      <div><dt>Card Price · 구매 비용</dt><dd>5,000,000원</dd></div>
+    </dl>
+  </div>
+  <p class="b-note">* 카드 구매 비용은 디자인 및 구매 옵션에<br class="m-br"> 따라 상이하며, 세부 혜택은 변경될 수 있습니다.</p>
+</section>
+
+<!-- ============ CONSULTATION ============ -->
+<section class="consult" id="consultation">
+  <div class="wrap">
+    <p class="eyebrow rv">Consultation</p>
+    <h2 class="rv d1">전담 매니저가<br>직접 연락드립니다</h2>
+    <form class="c-form rv" onsubmit="return false">
+      <div class="c-row">
+        <div class="c-field">
+          <label>성함 <span class="req">*</span></label>
+          <input type="text" placeholder="홍길동">
+        </div>
+        <div class="c-field">
+          <label>연락처 <span class="req">*</span></label>
+          <input type="tel" placeholder="010-0000-0000">
+        </div>
+      </div>
+      <div class="c-field">
+        <label>이메일</label>
+        <input type="email" placeholder="example@email.com">
+      </div>
+      <div class="c-field">
+        <label>문의 내용</label>
+        <textarea placeholder="관심 카드, 문의 사항을 자유롭게 작성해 주세요."></textarea>
+      </div>
+      <div class="c-agree">
+        <label class="c-agree-row">
+          <input type="checkbox" class="c-agree-chk">
+          <span class="c-agree-txt">개인정보 수집·이용에 동의합니다.<span class="req-tag">(필수)</span></span>
+        </label>
+        <p class="c-agree-desc">수집 항목: 성함, 연락처, 이메일, 문의 내용 &nbsp;/&nbsp; 목적: 구매 상담 연결 &nbsp;/&nbsp; 보유: 상담 완료 후 1년</p>
+      </div>
+      <button class="c-btn" type="submit">상담 신청하기</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p class="logo">Jewelry Card</p>
+  <p class="footer-en">Every Detail Tells a Story</p>
+  <p class="footer-ko">모든 디테일에는 이야기가 담겨 있습니다.</p>
+  <p class="footer-copy">© 2026 KONA CARD. All Rights Reserved.</p>
+</footer>
+
+<script>
+const CARDS = [
+ {
+  id:'baekho', tab:'백호', tagline:'수호와 성취', no:'01',
+  sub:'백호 — 수호와 성취',
+  headline:'성취를 지켜내는\n사람을 위한 카드',
+  body:[
+   '백호는 예로부터 액운을 물리치고 권위를 지키는 존재로 여겨져 왔습니다. 저희는 그 기운을 오늘의 언어로 풀어 소유자의 자산과 일상, 단단한 태도까지 조용히 지켜주는 카드로 담아냈습니다.',
+   '이 디자인은 이미 많은 것을 이룬 사람의 품격과, 그 기반을 더욱 굳건히 지켜가고자 하는 마음을 떠올리게 합니다. 중요한 책임을 맡은 순간, 오랜 성취를 기념하는 순간, 앞으로의 길에 든든한 응원을 전하고 싶을 때 어울립니다.'
+  ],
+  symbols:[
+   ['백호','액운을 물리치고 권위와 성취를 지켜내는 수호의 상징'],
+   ['부채꽃 모양','끊이지 않는 복과 잔잔한 번영의 흐름'],
+   ['보석 테두리','부정적인 기운을 막아주는 수호의 경계'],
+   ['연꽃','어떤 환경에서도 흐트러지지 않는 성장'],
+   ['산맥과 해·구름','든든한 토대 위 영광과 경사의 기원']
+  ],
+  dia:'지름 1mm · 469ea 식입 (전면 343 | 후면 126)',
+  spots:[[50,62],[25,38],[88,12],[30,78],[68,22]]
+ },
+ {
+  id:'gongjak', tab:'공작', tagline:'품격과 명예', no:'02',
+  sub:'공작 — 품격과 명예',
+  headline:'품격이 곧 존재감이 되는\n사람을 위한 카드',
+  body:[
+   '공작은 품격과 명예, 그리고 성스러운 덕망을 떠올리게 하는 존재입니다. 저희는 그 우아한 기품을 오늘의 감각으로 풀어 화려함을 넘어, 소유자의 안목과 태도가 자연스럽게 드러나는 카드로 담아냈습니다.',
+   '이 디자인은 자신의 위치를 크게 설명하지 않아도 은은하게 전해지는 품격과 존재감을 떠올리게 합니다. 섬세한 존재감이 필요한 순간, 승진과 위촉, 성과의 결실처럼 기억하고 싶은 장면에 우아한 표식이 되어줄 수 있습니다.'
+  ],
+  symbols:[
+   ['공작','우아한 기품 속에 성스러운 덕망을 품은 품격과 명예의 상징'],
+   ['공작 벼슬 다섯 가지','인·의·예·지·신으로 이어지는 군자의 기풍'],
+   ['보석 테두리','명예와 가치를 지켜주는 빛의 경계'],
+   ['기쁠 희(喜) 문양','밝은 기운과 좋은 소식이 드나드는 통로'],
+   ['깃털의 곡선','복과 기회가 넓게 퍼져나가길 바라는 흐름']
+  ],
+  dia:'지름 1mm · 525ea 식입 (전면 397 | 후면 128)',
+  spots:[[48,45],[55,15],[88,30],[25,60],[60,78]]
+ },
+ {
+  id:'eorakdo', tab:'어락도', tagline:'풍요와 순환', no:'03',
+  sub:'어락도 — 풍요와 순환',
+  headline:'번영을 현재에\n머물지 않게 하는 카드',
+  body:[
+   '물고기는 예로부터 재물을 지키고 풍요를 순환시키는 존재로 여겨져 왔습니다. 저희는 물고기의 생동감 속에 오늘의 성취가 내일의 번영으로 이어지길 바라는 마음을 담아냈습니다.',
+   '이 카드는 지금의 결실을 넘어 앞으로의 시간과 다음 세대까지 이어질 풍요로운 흐름을 떠올리게 합니다. 오랜 성취를 기념하는 순간, 가족과 함께 이어가고 싶은 번영, 또는 오래 남는 진심을 전하고 싶을 때 어울립니다.'
+  ],
+  symbols:[
+   ['황금 잉어','역경을 넘어 정점에 오르는 상승과 풍요의 상징'],
+   ['연꽃','성공 위에 기품과 번영이 더해지는 축복'],
+   ['보석과 꽃 테두리','부정적 기운으로부터 가치를 지키는 경계'],
+   ['만월의 패턴','끊이지 않고 충만하게 순환하는 풍요'],
+   ['물결 문양','변화의 흐름을 기회로 바꾸는 역동성']
+  ],
+  dia:'지름 1mm · 457ea 식입 (전면 346 | 후면 111)',
+  spots:[[45,55],[60,25],[88,40],[25,40],[55,85]]
+ },
+ {
+  id:'jindallae', tab:'진달래 꽃', tagline:'희망과 도약', no:'04',
+  sub:'진달래 꽃 — 희망과 도약',
+  headline:'견딘 시간까지\n아름답게 기억하는 카드',
+  body:[
+   '진달래는 추운 계절을 견디고 가장 먼저 봄을 알리는 꽃입니다. 저희는 이 꽃을 단지 아름다움이 아니라 견딘 시간 끝에 피어나는 희망과 도약의 표식으로 바라보았습니다.',
+   '이 디자인은 지나온 시간을 조용히 기념하고 앞으로의 날들을 더 환하게 축복하는 마음을 담고 있습니다. 새로운 시작을 앞둔 순간, 스스로에게 건네는 따뜻한 축하, 또는 소중한 사람에게 희망과 응원을 전하는 선물로 어울립니다.'
+  ],
+  symbols:[
+   ['진달래 꽃','견딘 시간 끝에 피어나는 새로운 희망과 도약의 표식'],
+   ['퍼져나가는 봉우리','지나온 시간을 축복하여 나아가는 환한 도약'],
+   ['격자창 무늬','밝은 기운과 좋은 소식이 드나드는 통로'],
+   ['보석 테두리','부정적인 기운을 막아주는 수호의 경계'],
+   ['잎사귀의 자개','시들지 않는 생명력과 따뜻한 응원의 마음']
+  ],
+  dia:'지름 1mm · 612ea 식입 (전면 476 | 후면 135)',
+  spots:[[42,60],[60,30],[75,45],[88,15],[30,85]]
+ },
+ {
+  id:'hwajeopdo', tab:'화접도', tagline:'사랑과 화목', no:'05',
+  sub:'화접도 — 사랑과 화목',
+  headline:'사랑과 기쁨,\n관계의 온도를 담는 카드',
+  body:[
+   '나비는 새로운 시작과 사랑, 그리고 가정의 화목을 떠올리게 하는 존재입니다. 저희는 그 부드럽고도 찬란한 이미지를 통해 삶의 기쁨과 관계의 온기를 담는 카드로 완성했습니다.',
+   '이 디자인은 나만을 위한 소유를 넘어 사랑하는 사람들과 함께 하는 삶의 장면을 떠올리게 합니다. 가족과 배우자, 소중한 사람과 나누는 마음, 오래 기억하고 싶은 관계의 순간을 이 한 장에 담았습니다.'
+  ],
+  symbols:[
+   ['나비','새로운 시작과 가정의 화목을 부르는 기쁨의 상징'],
+   ['귀장식 문양','사방에서 안녕을 기원하는 보호의 뜻'],
+   ['격자창 무늬','아름다운 순간을 또렷하게 드러내는 프레임'],
+   ['기둥','흔들리지 않는 신뢰와 기품의 기반'],
+   ['꽃','관계의 평안과 넓어지는 번영의 기운']
+  ],
+  dia:'지름 1mm · 457ea 식입 (전면 244 | 후면 213)',
+  spots:[[50,40],[80,12],[28,55],[78,65],[45,85]]
+ }
+];
+
+const CARD_FILE = {baekho:'whitetiger',gongjak:'peacock',eorakdo:'fish',jindallae:'flower',hwajeopdo:'hwajeopdo'};
+const PLATES = [
+ {key:'bright', name:'Bright Gold', dot:'#E8C56C', folder:'gold_18K'},
+ {key:'pure',   name:'Pure Gold',   dot:'#C9A227', folder:'gold_24K'},
+ {key:'white',  name:'White Gold',  dot:'#999999', folder:'whitegold'},
+ {key:'rose',   name:'Rose Gold',   dot:'#E3B0A0', folder:'rosegold'}
+];
+function cardSrc(cardId,folder,back=false){
+  return `assets/jewelry/${folder}/img_jewelry_${CARD_FILE[cardId]}${back?'_back':''}.png`;
+}
+
+const tabsEl = document.getElementById('tabs');
+const panelsEl = document.getElementById('panels');
+
+CARDS.forEach((c,i)=>{
+  const b = document.createElement('button');
+  b.className = 'tab-btn'+(i===0?' active':'');
+  b.setAttribute('role','tab');
+  b.textContent = c.tab;
+  b.onclick = ()=>activate(i);
+  tabsEl.appendChild(b);
+
+  const p = document.createElement('div');
+  p.className = 'panel'+(i===0?' active':'');
+  p.innerHTML = `
+    <span class="bignum num">${c.no}</span>
+    <div class="grid">
+      <div class="display">
+        <div class="stage" id="stage-${c.id}">
+          <div class="card-wrap" id="card3d-${c.id}">
+            <img class="card-front" id="front-${c.id}" src="${cardSrc(c.id,'gold_18K')}" alt="${c.tab} 카드">
+            <img class="card-back" id="back-${c.id}" src="${cardSrc(c.id,'gold_18K',true)}" alt="">
+            ${c.spots.map((s,j)=>`
+              <button class="spot" style="left:${s[0]}%;top:${s[1]}%"
+                onclick="showSym('${c.id}',${j},this)" aria-label="${c.symbols[j][0]}">${j+1}</button>`).join('')}
+          </div>
+          <p class="plate-label" id="label-${c.id}" style="color:${PLATES[0].dot}">Bright Gold</p>
+        </div>
+        <div class="materials">
+          <p class="m-title">재질 선택</p>
+          <div class="swatches" id="sw-${c.id}">
+            ${PLATES.map((pl,j)=>`
+              <button class="swatch${j===0?' active':''}" onclick="setPlate('${c.id}','${pl.key}','${pl.name}','${pl.folder}','${pl.dot}',this)">
+                <span class="dot" style="background:${pl.dot}"></span>
+                <span>${pl.name.replace(' ','<br>')}</span>
+              </button>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="story">
+        <p class="label">${c.sub}</p>
+        <h3>${c.headline.replace('\n','<br>')}</h3>
+        <div class="body">${c.body.map(t=>`<p>${t}</p>`).join('')}</div>
+        <div class="sym">
+          <h4>디자인에 담긴 상징</h4>
+          <div class="sym-grid" id="symlist-${c.id}">
+            ${c.symbols.map((s,j)=>`
+              <div class="sym-card">
+                <div class="sym-num">0${j+1}</div>
+                <div class="sym-body"><b>${s[0]}</b><span>${s[1]}</span></div>
+              </div>`).join('')}
+          </div>
+        </div>
+        <dl class="spec">
+          <div class="row"><dt>재질</dt><dd>스테인리스 메탈 (SUS 304 3/4H) · 천연자개</dd></div>
+          <div class="row"><dt>도금</dt><dd>Bright Gold / Pure Gold / White Gold / Rose Gold</dd></div>
+          <div class="row"><dt>다이아몬드</dt><dd>랩그로운 다이아몬드 ${c.dia}</dd></div>
+        </dl>
+      </div>
+    </div>`;
+  panelsEl.appendChild(p);
+});
+
+function activate(i){
+  [...tabsEl.children].forEach((b,j)=>b.classList.toggle('active',j===i));
+  [...panelsEl.children].forEach((p,j)=>p.classList.toggle('active',j===i));
+}
+
+function setPlate(id,key,name,folder,color,btn){
+  const wrap = document.getElementById('card3d-'+id);
+  const frontEl = document.getElementById('front-'+id);
+  const backEl = document.getElementById('back-'+id);
+  const labelEl = document.getElementById('label-'+id);
+  labelEl.textContent = name;
+  labelEl.style.color = color;
+  [...document.getElementById('sw-'+id).children].forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  backEl.src = cardSrc(id,folder,true);
+  wrap.classList.add('show-back');
+  setTimeout(()=>{ frontEl.src = cardSrc(id,folder); }, 480);
+  setTimeout(()=>{ wrap.classList.remove('show-back'); }, 520);
+}
+
+function showSym(id,idx,btn){
+  const c = CARDS.find(c=>c.id===id);
+  const wrap = btn.parentElement;
+  const spots = wrap.querySelectorAll('.spot');
+  const symCards = document.getElementById('symlist-'+id).querySelectorAll('.sym-card');
+  const wasActive = btn.classList.contains('active');
+  spots.forEach(s=>s.classList.remove('active'));
+  symCards.forEach(sc=>sc.classList.remove('highlight'));
+  document.querySelectorAll('.spot-pop').forEach(p=>p.remove());
+  if(wasActive) return;
+
+  btn.classList.add('active');
+  symCards[idx].classList.add('highlight');
+
+  const pop = document.createElement('div');
+  pop.innerHTML = `<p class="t"><span class="pn">0${idx+1}</span>${c.symbols[idx][0]}</p><p class="d">${c.symbols[idx][1]}</p>`;
+  document.body.appendChild(pop);
+
+  const rect = btn.getBoundingClientRect();
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const popW = Math.min(240, vw * 0.62);
+  pop.style.width = popW + 'px';
+
+  if(vw < 640){
+    /* 모바일: 버튼 아래로 */
+    const left = Math.max(8, Math.min(rect.left + rect.width/2 - popW/2, vw - popW - 8));
+    pop.className = 'spot-pop side-b';
+    pop.style.left = left + 'px';
+    pop.style.top = (rect.bottom + 8) + 'px';
+    requestAnimationFrame(()=>{
+      const ph = pop.offsetHeight;
+      if(rect.bottom + 8 + ph > vh - 8){
+        /* 화면 아래 잘리면 버튼 위로 */
+        pop.style.top = Math.max(8, rect.top - 8 - ph) + 'px';
+        pop.classList.replace('side-b','side-t');
+      }
+    });
+  } else {
+    /* 데스크톱: 버튼 좌우 — 버튼을 가리지 않게 rect 기준 */
+    let side, left;
+    if(rect.right + 8 + popW <= vw - 8){ side = 'r'; left = rect.right + 8; }
+    else { side = 'l'; left = rect.left - 8 - popW; }
+    left = Math.max(8, Math.min(left, vw - popW - 8));
+    pop.className = 'spot-pop side-'+side;
+    pop.style.left = left + 'px';
+    pop.style.top = (rect.top - 14) + 'px';
+    requestAnimationFrame(()=>{
+      const ph = pop.offsetHeight;
+      pop.style.top = Math.max(8, Math.min(rect.top - 14, vh - ph - 8)) + 'px';
+    });
+  }
+}
+
+/* close popover when clicking outside */
+document.addEventListener('click', e=>{
+  if(e.target.closest('.spot') || e.target.closest('.spot-pop')) return;
+  document.querySelectorAll('.spot-pop').forEach(p=>p.remove());
+  document.querySelectorAll('.spot.active').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.sym-card.highlight').forEach(sc=>sc.classList.remove('highlight'));
+});
+
+/* scroll reveal */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* minhwa video cycle — 4s display, 0.6s fade in/out */
+const minhwaVids = document.querySelectorAll('.minhwa-vid');
+let minhwaIdx = 0;
+let minhwaTimer;
+const MINHWA_DUR = 4000;
+const MINHWA_FADE = 600;
+
+function switchMinhwa(n){
+  clearTimeout(minhwaTimer);
+  const prev = minhwaIdx;
+  const next = ((n % minhwaVids.length) + minhwaVids.length) % minhwaVids.length;
+  // fade out current
+  minhwaVids[prev].classList.remove('minhwa-active');
+  minhwaVids[prev].pause();
+  // after fade, play next
+  minhwaTimer = setTimeout(()=>{
+    minhwaIdx = next;
+    minhwaVids[next].currentTime = 0;
+    minhwaVids[next].play().catch(()=>{});
+    minhwaVids[next].classList.add('minhwa-active');
+    minhwaTimer = setTimeout(()=>switchMinhwa(next+1), MINHWA_DUR);
+  }, MINHWA_FADE);
+}
+
+const minhwaIO = new IntersectionObserver(([e])=>{
+  if(!e.isIntersecting) return;
+  minhwaVids[0].play().catch(()=>{});
+  minhwaTimer = setTimeout(()=>switchMinhwa(1), MINHWA_DUR);
+  minhwaIO.unobserve(e.target);
+},{threshold:.2});
+const minhwaStage = document.getElementById('minhwaStage');
+if(minhwaStage) minhwaIO.observe(minhwaStage);
+
+/* nav */
+const nav = document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+</script>
+</body>
+</html>
