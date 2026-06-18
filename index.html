@@ -172,7 +172,16 @@ nav a:hover{color:var(--gold)}
 .spot-pop .t{font-size:15px;font-weight:600;color:var(--brown);letter-spacing:.04em}
 .spot-pop .t .pn{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-deep);margin-right:7px;font-size:18px}
 .spot-pop .d{margin-top:6px;font-size:14px;color:var(--ink-soft);line-height:1.85}
-.materials{margin-top:30px}
+.materials{margin-top:40px;padding-top:32px;border-top:1px solid var(--line-paper)}
+@media(max-width:959px){
+  .panel .grid{display:flex;flex-direction:column;gap:0}
+  .panel .display{order:1}
+  .panel .story{order:2;display:flex;flex-direction:column;margin-top:0}
+  .panel .story .label{order:2;margin-top:40px}
+  .panel .story h3{order:3}
+  .panel .story .body{order:4}
+  .panel .materials{order:1;margin-top:32px;padding-top:0;border-top:none;border-bottom:1px solid var(--line-paper);padding-bottom:32px}
+}
 .materials .m-title{font-size:15px;letter-spacing:.35em;color:var(--brown);font-weight:600;text-transform:uppercase}
 .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
 .swatch{border:1px solid var(--line-paper);background:rgba(255,255,255,.45);padding:14px 8px 12px;
@@ -190,6 +199,7 @@ nav a:hover{color:var(--gold)}
 
 /* ── 디자인에 담긴 상징 — card grid redesign ── */
 .sym{margin-top:44px;border-top:1px solid var(--line-paper);padding-top:32px}
+@media(max-width:640px){.sym{display:none}}
 .sym h4{font-size:16px;letter-spacing:.35em;color:var(--brown);font-weight:600;text-transform:uppercase;margin-bottom:20px}
 .sym-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:540px){.sym-grid{grid-template-columns:1fr}}
@@ -259,7 +269,7 @@ nav a:hover{color:var(--gold)}
 .mile-modal{display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center}
 .mile-modal.open{display:flex}
 .mile-overlay{position:absolute;inset:0;background:rgba(10,8,5,.75);backdrop-filter:blur(4px)}
-.mile-box{position:relative;background:var(--paper-soft);width:min(720px,96vw);max-height:92vh;display:flex;flex-direction:column;z-index:1;border-radius:4px}
+.mile-box{position:relative;background:var(--paper-soft);width:min(720px,96vw);max-height:92vh;display:flex;flex-direction:column;z-index:1;border-radius:8px}
 .mile-header{padding:28px 40px 0;flex-shrink:0}
 @media(max-width:640px){.mile-header{padding:16px 20px 0}}
 .mile-header-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -271,7 +281,7 @@ nav a:hover{color:var(--gold)}
   .mile-tabs{padding:0 16px}
   .mile-panels{padding:20px 16px 32px}
 }
-.mile-close{background:none;border:none;cursor:pointer;font-size:26px;color:#666666;line-height:1;flex-shrink:0;padding:0 0 0 8px}
+.mile-close{background:none;border:none;cursor:pointer;font-size:26px;color:#666666;line-height:1;flex-shrink:0;padding:0 0 0 8px;display:flex;align-items:center;align-self:center}
 .mile-title{font-size:21px;font-weight:500;color:var(--ink);margin:0}
 /* tabs */
 .mile-tabs{display:flex;gap:0;margin-top:24px;border-bottom:1px solid rgba(36,27,18,.12);flex-shrink:0;padding:0 40px}
@@ -436,7 +446,7 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
   <div class="wrap">
     <p class="eyebrow rv">Jewelry Card</p>
     <h1 class="rv d1">쓰임을 넘어,<br><b>당신의 품격을<br class="m-br">증명하는 단 한 장</b></h1>
-    <p class="sub rv d2">묵직한 메탈의 존재감,<br class="m-br"> 랩다이아몬드의 맑은 광채,<br>오로라 빛 자개와 한국적 문양을<br class="m-br"> 한 장에 담았습니다.</p>
+    <!-- HIDDEN: <p class="sub rv d2">묵직한 메탈의 존재감,<br class="m-br"> 랩다이아몬드의 맑은 광채,<br>오로라 빛 자개와 한국적 문양을<br class="m-br"> 한 장에 담았습니다.</p> -->
   </div>
   <p class="scroll-hint">Scroll</p>
 </header>
@@ -497,7 +507,7 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
       </div>
       <div>
         <h4>더한옥헤리티지</h4>
-        <p>더한옥헤리티지 호텔 30% / 독채 20% 숙박 할인</p>
+        <p>더한옥헤리티지 호텔 30% / 독채 20%<br class="m-br"> 숙박 할인</p>
       </div>
     </div>
 
@@ -513,7 +523,7 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
       </div>
       <div>
         <h4>코나 웰컴 마일리지</h4>
-        <p>적립된 마일리지에 따라 항공권, 골프 여행 패키지 등의 혜택 제공</p>
+        <p>적립된 마일리지에 따라 항공권,<br class="m-br"> 골프 여행 패키지 등의 혜택 제공</p>
         <div class="b-mile-cards">
           <div class="bm-card">
             <p class="bm-card-label">웰컴 마일리지</p>
@@ -1110,6 +1120,11 @@ CARDS.forEach((c,i)=>{
           </div>
           <p class="plate-label" id="label-${c.id}" style="color:${PLATES[0].dot}">Bright Gold</p>
         </div>
+      </div>
+      <div class="story">
+        <p class="label">${c.sub}</p>
+        <h3>${c.headline.replace('\n','<br>')}</h3>
+        <div class="body">${c.body.map(t=>`<p>${t}</p>`).join('')}</div>
         <div class="materials">
           <p class="m-title">재질 선택</p>
           <div class="swatches" id="sw-${c.id}">
@@ -1118,21 +1133,6 @@ CARDS.forEach((c,i)=>{
                 <span class="dot" style="background:${pl.dot}"></span>
                 <span>${pl.name.replace(' ','<br>')}</span>
               </button>`).join('')}
-          </div>
-        </div>
-      </div>
-      <div class="story">
-        <p class="label">${c.sub}</p>
-        <h3>${c.headline.replace('\n','<br>')}</h3>
-        <div class="body">${c.body.map(t=>`<p>${t}</p>`).join('')}</div>
-        <div class="sym">
-          <h4>디자인에 담긴 상징</h4>
-          <div class="sym-grid" id="symlist-${c.id}">
-            ${c.symbols.map((s,j)=>`
-              <div class="sym-card">
-                <div class="sym-num">0${j+1}</div>
-                <div class="sym-body"><b>${s[0]}</b><span>${s[1]}</span></div>
-              </div>`).join('')}
           </div>
         </div>
       </div>
