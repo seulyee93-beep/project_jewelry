@@ -79,7 +79,7 @@ nav a:hover{color:var(--gold)}
   background:linear-gradient(180deg,var(--black) 0%,#16100A 50%,var(--black) 100%);
   padding:clamp(110px,16vh,180px) 0}
 .philo-inner-grid{display:grid;grid-template-columns:auto 1fr;
-  gap:clamp(40px,8vw,130px);align-items:center}
+  gap:clamp(40px,8vw,130px);align-items:center;justify-content:center;max-width:960px;margin:0 auto}
 .v-text{writing-mode:vertical-lr;text-orientation:mixed;font-size:clamp(28px,3.4vw,46px);
   font-weight:400;line-height:2.1;letter-spacing:.18em;height:clamp(340px,46vw,560px);color:#F4ECDB}
 .v-text b{font-weight:600;color:var(--gold)}
@@ -163,7 +163,7 @@ nav a:hover{color:var(--gold)}
 .spot.active::after{animation:none;opacity:0}
 /* popover */
 .spot-pop{position:fixed;width:min(240px,62vw);background:#fff;border:1px solid var(--line-paper);
-  box-shadow:0 16px 40px rgba(40,25,8,.22);padding:14px 16px;z-index:999;text-align:left}
+  box-shadow:0 16px 40px rgba(40,25,8,.22);padding:14px 16px;z-index:999;text-align:left;border-radius:4px}
 .spot-pop::before{content:"";position:absolute;width:10px;height:10px;background:#fff;
   transform:rotate(45deg);border:1px solid var(--line-paper)}
 .spot-pop.side-r::before{top:14px;left:-6px;border-right:none;border-top:none}
@@ -176,7 +176,7 @@ nav a:hover{color:var(--gold)}
 .materials .m-title{font-size:15px;letter-spacing:.35em;color:var(--brown);font-weight:600;text-transform:uppercase}
 .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
 .swatch{border:1px solid var(--line-paper);background:rgba(255,255,255,.45);padding:14px 8px 12px;
-  transition:.25s;text-align:center;cursor:pointer}
+  transition:.25s;text-align:center;cursor:pointer;border-radius:4px}
 .swatch .dot{width:22px;height:22px;border-radius:50%;margin:0 auto 8px;border:1px solid rgba(0,0,0,.15)}
 .swatch span{font-size:13px;color:var(--ink-soft);letter-spacing:.04em;display:block;line-height:1.4}
 .swatch.active{border-color:var(--gold-deep);background:#fff;box-shadow:0 10px 24px rgba(140,110,50,.18)}
@@ -190,19 +190,19 @@ nav a:hover{color:var(--gold)}
 
 /* ── 디자인에 담긴 상징 — card grid redesign ── */
 .sym{margin-top:44px;border-top:1px solid var(--line-paper);padding-top:32px}
-.sym h4{font-size:15px;letter-spacing:.35em;color:var(--brown);font-weight:600;text-transform:uppercase;margin-bottom:20px}
+.sym h4{font-size:16px;letter-spacing:.35em;color:var(--brown);font-weight:600;text-transform:uppercase;margin-bottom:20px}
 .sym-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:540px){.sym-grid{grid-template-columns:1fr}}
 .sym-card{background:rgba(71,46,31,.07);
   padding:16px;display:flex;gap:14px;align-items:flex-start;
-  transition:background .25s}
+  transition:background .25s;border-radius:4px}
 .sym-card.highlight{background:rgba(175,144,66,.13);border-color:rgba(175,144,66,.45);border-left-color:var(--gold-deep)}
 .sym-card .sym-num{font-family:'Cormorant Garamond',serif;font-style:italic;
   font-size:26px;color:var(--gold-deep);line-height:1.1;flex:0 0 auto;min-width:28px}
-.sym-card .sym-body b{display:block;color:var(--ink);font-size:14px;font-weight:600;line-height:1.4;margin-bottom:4px}
-.sym-card .sym-body span{display:block;font-size:13px;color:var(--ink-soft);line-height:1.75}
+.sym-card .sym-body b{display:block;color:var(--ink);font-size:15px;font-weight:600;line-height:1.4;margin-bottom:4px}
+.sym-card .sym-body span{display:block;font-size:14px;color:var(--ink-soft);line-height:1.75}
 
-.spec{margin-top:40px;padding:24px 28px;display:grid;gap:12px;background:rgba(255,255,255,.4)}
+.spec{margin-top:40px;padding:24px 28px;display:grid;gap:12px;background:rgba(255,255,255,.4);border-radius:4px}
 .spec .row{display:flex;gap:18px;font-size:14px;line-height:1.8}
 .spec .row dt{flex:0 0 92px;color:var(--brown);font-weight:600;letter-spacing:.04em}
 .spec .row dd{color:var(--ink-soft)}
@@ -220,7 +220,7 @@ nav a:hover{color:var(--gold)}
   .b-item{display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 0;text-align:center}
   .b-left{min-width:0!important;width:44px!important;max-width:44px!important;align-items:center!important;margin-left:0}
 }
-.b-item:last-child{border-bottom:1px solid var(--line-dark)}
+.b-item:last-child{border-bottom:none}
 .b-left{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:70px}
 .b-icon{width:44px;height:44px;color:var(--gold);opacity:.85;flex:0 0 auto}
 .b-icon svg{width:44px;height:44px}
@@ -228,32 +228,166 @@ nav a:hover{color:var(--gold)}
 .b-item h4{font-size:clamp(20px,2.2vw,25px);font-weight:500;color:var(--cream-text);padding-top:4px}
 .b-item p{margin-top:10px;font-size:17px;color:var(--cream-dim);font-weight:300;line-height:2}
 
-/* fee — no borders, horizontal on desktop */
-.fee-wrap{max-width:780px;margin:80px auto 0;padding:56px 48px}
-@media(max-width:640px){.fee-wrap{margin:80px 28px 0;padding:48px 28px}}
+/* mileage button */
+/* b-item inline mileage cards */
+.b-mile-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+@media(max-width:640px){.b-mile-cards{grid-template-columns:1fr;text-align:left}}
+.bm-card{border:none;padding:14px 16px;background:rgba(255,255,255,.07);border-radius:4px}
+.bm-card.bm-full{grid-column:1/-1}
+.bm-card.bm-gold{background:rgba(201,168,92,.11);border:none}
+.bm-card-label{font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(201,168,92,.7);text-transform:uppercase;margin-bottom:6px}
+.bm-card p{font-size:15px;color:rgba(239,230,210,.65);line-height:1.8;margin:0}
+.bm-card .bm-accent{color:var(--gold);font-size:15px;font-weight:500;display:block;margin-top:3px}
+
+/* icon-left title row (마일리지 item) */
+.b-icon-title{display:flex;align-items:center;gap:18px}
+@media(max-width:640px){.b-icon-title{flex-direction:column;align-items:center;gap:12px}}
+.b-icon-title .b-icon{flex-shrink:0}
+/* 마일리지 b-item: 아이콘을 타이틀 블록 기준 가운데 정렬 */
+.b-item-mile{align-items:start}
+.b-item-mile .b-left{margin-top:20px}
+@media(max-width:640px){.b-item-mile{align-items:center!important}.b-item-mile .b-left{margin-top:0}}
+/* cards+button indent: aligns with title text (44px icon + 18px gap) */
+.b-mile-body{padding-left:62px;margin-top:0}
+@media(max-width:640px){.b-mile-body{padding-left:0}}
+
+.mile-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;padding:13px 24px;border:none;background:var(--gold-deep);color:#fff;font-size:13px;letter-spacing:.08em;cursor:pointer;font-family:inherit;transition:opacity .2s;border-radius:4px}
+.mile-btn:hover{opacity:.85}
+.mile-btn svg{width:14px;height:14px;flex-shrink:0}
+
+/* mileage modal */
+.mile-modal{display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center}
+.mile-modal.open{display:flex}
+.mile-overlay{position:absolute;inset:0;background:rgba(10,8,5,.75);backdrop-filter:blur(4px)}
+.mile-box{position:relative;background:var(--paper-soft);width:min(720px,96vw);max-height:92vh;display:flex;flex-direction:column;z-index:1;border-radius:4px}
+.mile-header{padding:28px 40px 0;flex-shrink:0}
+@media(max-width:640px){.mile-header{padding:16px 20px 0}}
+.mile-header-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+/* mobile: fullscreen */
+.mile-handle{display:none}
+@media(max-width:640px){
+  .mile-modal{align-items:stretch;justify-content:stretch}
+  .mile-box{width:100%;height:100%;max-height:100%;border-radius:0}
+  .mile-tabs{padding:0 16px}
+  .mile-panels{padding:20px 16px 32px}
+}
+.mile-close{background:none;border:none;cursor:pointer;font-size:26px;color:#666666;line-height:1;flex-shrink:0;padding:0 0 0 8px}
+.mile-title{font-size:21px;font-weight:500;color:var(--ink);margin:0}
+/* tabs */
+.mile-tabs{display:flex;gap:0;margin-top:24px;border-bottom:1px solid rgba(36,27,18,.12);flex-shrink:0;padding:0 40px}
+@media(max-width:640px){.mile-tabs{padding:0 12px}}
+.mile-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 16px 10px;font-size:14px;letter-spacing:.04em;color:#666666;cursor:pointer;font-family:inherit;margin-bottom:-1px;transition:color .2s,border-color .2s;white-space:nowrap}
+.mile-tab.active{color:var(--gold-deep);border-bottom-color:var(--gold-deep);font-weight:600}
+@media(max-width:640px){.mile-tab{flex:1 1 0;min-width:0;white-space:normal;word-break:keep-all;text-align:center;font-size:13px;padding:9px 3px;line-height:1.35;letter-spacing:0}}
+/* panel scroll area */
+.mile-panels{overflow-y:auto;padding:28px 40px 36px;flex:1}
+@media(max-width:640px){.mile-panels{padding:24px 20px 28px}}
+.mile-panel{display:none}
+.mile-panel.active{display:block}
+/* section labels */
+.mile-slabel{font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--gold-deep);text-transform:uppercase;margin:22px 0 8px;padding-bottom:7px;border-bottom:1px solid rgba(201,168,92,.25)}
+.mile-slabel:first-child{margin-top:0}
+/* section boxes */
+.mile-sec{border:1px solid rgba(36,27,18,.13);background:#fff;margin-bottom:12px;overflow:hidden;border-radius:4px}
+.mile-sec:last-child{margin-bottom:0}
+.mile-sec-h{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:.02em;padding:13px 16px;background:rgba(201,168,92,.08);border-bottom:1px solid rgba(36,27,18,.1);margin:0}
+.mile-sec-body{padding:0}
+.mile-sec .mile-ptbl{margin:0}
+.mile-sec .mile-ptbl td{padding:10px 16px;font-size:13px}
+.mile-sec .mile-ptbl td:first-child{width:1%;white-space:nowrap;background:rgba(36,27,18,.03);border-right:1px solid rgba(36,27,18,.08);padding-right:20px}
+@media(max-width:480px){.mile-sec .mile-ptbl td:first-child{white-space:normal;width:90px;padding-right:12px}}
+.mile-sec-desc{font-size:14px;color:#666666;line-height:1.8;padding:12px 16px;border-bottom:1px solid rgba(36,27,18,.08)}
+.mile-sec .mile-rtbl{width:100%}
+.mile-sec .mile-rtbl th{padding:9px 14px}
+.mile-sec .mile-rtbl td{padding:9px 14px;border-bottom:1px solid rgba(36,27,18,.07);font-size:13px}
+.mile-sec .mile-rtbl tr:last-child td{border-bottom:none}
+/* policy row table */
+.mile-ptbl{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:4px}
+.mile-ptbl td{padding:9px 0;vertical-align:top;border-bottom:1px solid rgba(36,27,18,.07);line-height:1.8;color:#666666}
+.mile-td-h{color:var(--ink);font-weight:600;display:inline}
+.mile-ptbl td:first-child{width:120px;color:var(--ink);font-weight:600;font-size:13px;letter-spacing:.02em;padding-right:16px;flex-shrink:0}
+@media(max-width:480px){.mile-ptbl td:first-child{width:90px}}
+.mile-ptbl tr:last-child td{border-bottom:none}
+/* route table */
+.mile-rtbl{width:100%;border-collapse:collapse;font-size:13px}
+.mile-rtbl thead tr{background:rgba(201,168,92,.12)}
+.mile-rtbl th{padding:9px 14px;font-size:13px;letter-spacing:.04em;color:var(--ink);font-weight:700;text-transform:uppercase}
+.mile-rtbl th:first-child{text-align:left}
+.mile-rtbl th:last-child{text-align:right}
+.mile-rtbl td{padding:9px 14px;border-bottom:1px solid rgba(36,27,18,.07);color:#666666}
+.mile-rtbl td:first-child{text-align:left}
+.mile-rtbl td:last-child{text-align:right;color:var(--gold-deep);font-weight:600}
+.mile-rtbl tr:last-child td{border-bottom:none}
+.mile-rtbl tbody tr:hover td{background:rgba(255,255,255,.55)}
+@media(max-width:480px){.mile-rtbl td,.mile-rtbl th{padding:8px 10px}}
+/* excl tags */
+.mile-excl{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.mile-excl span{font-size:13px;padding:4px 10px;border:1px solid rgba(36,27,18,.14);color:#666666;background:rgba(255,255,255,.5)}
+/* notice list */
+.mile-notice-group{margin-bottom:18px}
+.mile-notice-group h5{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--ink);margin-bottom:6px}
+.mile-notice-group ul{padding-left:14px;margin:0}
+.mile-notice-group li{font-size:14px;color:#666666;line-height:1.9;list-style:disc}
+/* link */
+.mile-link{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:13px;border:1px solid rgba(36,27,18,.18);color:var(--ink);font-size:13px;letter-spacing:.04em;text-decoration:none;margin-top:24px;transition:background .2s}
+.mile-link:hover{background:rgba(36,27,18,.05)}
+
+/* fee box */
+.fee-wrap{max-width:780px;margin:80px auto 0;padding:52px 56px 44px;background:rgba(255,255,255,.05);border-radius:4px}
+@media(max-width:640px){.fee-wrap{margin:60px 24px 0;padding:40px 28px 36px}}
 .fee{display:flex;gap:clamp(40px,8vw,120px);justify-content:center;flex-wrap:wrap;text-align:center}
 @media(min-width:640px){.fee{flex-wrap:nowrap;align-items:center}}
 .fee dt{font-size:15px;letter-spacing:.3em;color:var(--cream-dim);text-transform:uppercase}
-.fee dd{margin-top:12px;font-size:clamp(28px,3.4vw,38px);font-weight:500;color:var(--gold)}
-
-/* b-note — mobile center, desktop left */
-.b-note{max-width:780px;margin:20px auto 0;padding:0 48px;
-  font-size:15px;color:rgba(239,230,210,.4);font-weight:300;text-align:center}
-@media(max-width:640px){.b-note{margin:20px 0 0;padding:0;text-align:center}}
+.fee dd{margin-top:4px;font-size:clamp(28px,3.4vw,38px);font-weight:500;color:var(--gold)}
+.b-note{font-size:14px;color:rgba(239,230,210,.4);font-weight:300;text-align:center;margin-top:28px;padding:0}
+@media(max-width:640px){.b-note{margin-top:20px}}
 
 /* consultation */
 .consult{background:var(--paper-soft);padding:clamp(80px,12vh,140px) 0;text-align:center}
 .consult .eyebrow{font-size:15px;letter-spacing:.4em;color:var(--gold-deep);text-transform:uppercase}
 .consult h2{margin-top:20px;font-size:clamp(26px,3.2vw,42px);font-weight:400;color:var(--ink);line-height:1.5}
-.c-form{display:grid;gap:16px;max-width:680px;margin:32px auto 0;text-align:left}
+.consult .c-sub{margin-top:14px;font-size:16px;color:var(--ink-soft);font-weight:300;line-height:1.7}
+.c-form{display:grid;gap:16px;max-width:824px;margin:32px auto 0;text-align:left}
 .c-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 @media(max-width:640px){.c-row{grid-template-columns:1fr}}
 .c-field label{display:block;font-size:14px;font-weight:700;letter-spacing:.05em;color:var(--ink);margin-bottom:6px}
 .c-field label .req{color:#b22222;margin-left:3px}
-.c-field input,.c-field textarea{width:100%;border:1px solid rgba(36,27,18,.22);background:transparent;padding:14px 16px;font-size:16px;font-family:inherit;color:var(--ink);outline:none;transition:border-color .2s;box-sizing:border-box}
+.c-field input,.c-field textarea{width:100%;border:1px solid rgba(36,27,18,.22);background:#fff;padding:14px 16px;font-size:16px;font-family:inherit;color:var(--ink);outline:none;transition:border-color .2s;box-sizing:border-box;border-radius:4px}
 .c-field input::placeholder,.c-field textarea::placeholder{color:rgba(36,27,18,.3);font-weight:300}
 .c-field input:focus,.c-field textarea:focus{border-color:var(--gold-deep)}
 .c-field textarea{height:130px;resize:none}
+/* custom time dropdown */
+.c-time-wrap{position:relative}
+.c-time-btn{width:100%;border:1px solid rgba(36,27,18,.22);background:#fff;padding:14px 16px;font-size:16px;font-family:inherit;color:rgba(36,27,18,.3);text-align:left;cursor:pointer;border-radius:4px;transition:border-color .2s;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;font-weight:300}
+.c-time-btn.selected-val{color:var(--ink);font-weight:400}
+.c-time-btn.open{border-color:var(--gold-deep)}
+.c-time-btn svg{flex-shrink:0;transition:transform .2s}
+.c-time-btn.open svg{transform:rotate(180deg)}
+.c-time-drop{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:600;background:#fff;border:1px solid rgba(36,27,18,.18);border-radius:4px;box-shadow:0 8px 32px rgba(10,8,5,.1);overflow:hidden}
+.c-time-drop.open{display:block}
+.c-time-opt{padding:13px 16px;font-size:15px;font-family:inherit;color:var(--ink);cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(36,27,18,.06)}
+.c-time-opt:last-child{border-bottom:none}
+.c-time-opt:hover{background:rgba(201,168,92,.1)}
+.c-time-opt.active{color:var(--gold-deep);font-weight:600;background:rgba(201,168,92,.08)}
+/* date picker */
+.c-date-wrap{position:relative}
+.c-date-wrap input{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' stroke='%235A4D3E' stroke-width='1.5'/%3E%3Cpath d='M3 9h18M8 2v4M16 2v4' stroke='%235A4D3E' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-color:#fff}
+.c-cal{display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:500;background:#fff;border:1px solid rgba(36,27,18,.18);border-radius:4px;box-shadow:0 8px 32px rgba(10,8,5,.12);padding:16px;width:280px;user-select:none}
+.c-cal.open{display:block}
+.c-cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.c-cal-nav button{background:none;border:none;cursor:pointer;font-size:18px;color:var(--ink);padding:2px 8px;line-height:1;border-radius:2px;transition:background .15s}
+.c-cal-nav button:hover{background:rgba(36,27,18,.07)}
+.c-cal-nav span{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:.03em}
+.c-cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px}
+.c-cal-days span{font-size:11px;font-weight:700;text-align:center;color:#666666;padding:4px 0;letter-spacing:.03em}
+.c-cal-days span:first-child{color:#b22222}
+.c-cal-cells{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.c-cal-cell{text-align:center;padding:6px 2px;font-size:13px;cursor:pointer;border-radius:3px;color:var(--ink);transition:background .15s}
+.c-cal-cell:hover{background:rgba(201,168,92,.18)}
+.c-cal-cell.today{font-weight:700;color:var(--gold-deep)}
+.c-cal-cell.selected{background:var(--gold-deep);color:#fff;font-weight:600}
+.c-cal-cell.other-month{color:rgba(36,27,18,.3)}
+.c-cal-cell.disabled{color:rgba(36,27,18,.2);cursor:default;pointer-events:none}
 .c-agree{display:flex;flex-direction:column;gap:8px;margin-top:4px}
 .c-agree-row{display:flex;align-items:center;gap:12px;cursor:pointer}
 .c-agree-chk{width:18px;height:18px;border:1px solid rgba(36,27,18,.3);appearance:none;-webkit-appearance:none;cursor:pointer;flex-shrink:0;position:relative;transition:background .2s,border-color .2s}
@@ -261,10 +395,20 @@ nav a:hover{color:var(--gold)}
 .c-agree-chk:checked::after{content:'';position:absolute;left:5px;top:2px;width:5px;height:9px;border:1.5px solid #fff;border-top:none;border-left:none;transform:rotate(40deg)}
 .c-agree-txt{font-size:15px;color:var(--ink)}
 .c-agree-txt .req-tag{color:#b22222;font-size:13px;margin-left:4px}
-.c-agree-desc{font-size:12px;color:var(--ink-soft);padding-left:30px;line-height:1.7}
-.c-btn{width:100%;padding:22px;background:var(--gold-deep);color:var(--paper-soft);font-size:15px;letter-spacing:.2em;text-align:center;cursor:pointer;border:none;font-family:inherit;margin-top:32px;transition:opacity .2s}
+.c-agree-desc{font-size:14px;color:var(--ink-soft);padding-left:30px;line-height:1.7}
+.c-btn{width:100%;padding:22px;background:var(--gold-deep);color:var(--paper-soft);font-size:15px;letter-spacing:.2em;text-align:center;cursor:pointer;border:none;font-family:inherit;margin-top:32px;transition:opacity .2s;border-radius:4px}
 .c-btn:hover{opacity:.82}
 
+/* notice section */
+.notice{background:#111;padding:clamp(48px,7vh,80px) 0}
+.notice-inner{max-width:824px;margin:0 auto;padding:0 28px}
+.notice-title{font-size:clamp(18px,1.8vw,22px);font-weight:500;color:rgba(239,230,210,.9);margin-bottom:12px;letter-spacing:.03em}
+.notice-box{background:none;padding:0}
+.notice-group{margin-bottom:0}
+.notice-group-title{display:none}
+.notice-group ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.notice-group li{font-size:15px;color:rgba(239,230,210,.45);line-height:1.9;padding-left:16px;position:relative;word-break:keep-all}
+.notice-group li::before{content:'•';position:absolute;left:0;color:rgba(201,168,92,.5)}
 footer{background:#070503;padding:40px 0;text-align:center;border-top:1px solid rgba(201,168,92,.15)}
 @media(max-width:640px){footer{padding-left:28px;padding-right:28px}}
 footer .logo{font-size:16px;letter-spacing:.5em;color:var(--gold);font-weight:600;text-transform:uppercase}
@@ -313,6 +457,8 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
     <video class="minhwa-vid minhwa-active" src="assets/공작.mp4" muted playsinline preload="auto"></video>
     <video class="minhwa-vid" src="assets/나비.mp4" muted playsinline preload="auto"></video>
     <video class="minhwa-vid" src="assets/어락도.mp4" muted playsinline preload="auto"></video>
+    <video class="minhwa-vid" src="assets/진달래꽃.mp4" muted playsinline preload="auto"></video>
+    <video class="minhwa-vid" src="assets/백호.mp4" muted playsinline preload="auto"></video>
   </div>
 </section>
 
@@ -341,19 +487,21 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
       <div class="b-left">
         <div class="b-icon">
           <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="22" cy="22" r="14.25" stroke="#C9A85C" stroke-width="1.5"/>
-            <path d="M21.0919 13.9687C21.4494 13.1938 22.5506 13.1938 22.9081 13.9687L24.5869 17.6084C24.7326 17.9242 25.0319 18.1417 25.3772 18.1826L29.3576 18.6546C30.205 18.755 30.5454 19.8024 29.9189 20.3818L26.976 23.1032C26.7207 23.3394 26.6064 23.6912 26.6742 24.0323L27.4553 27.9637C27.6216 28.8007 26.7307 29.448 25.9861 29.0312L22.4884 27.0734C22.185 26.9035 21.815 26.9035 21.5116 27.0734L18.0139 29.0312C17.2693 29.448 16.3784 28.8007 16.5447 27.9637L17.3258 24.0323C17.3936 23.6912 17.2793 23.3394 17.024 23.1032L14.0811 20.3818C13.4546 19.8024 13.795 18.755 14.6424 18.6546L18.6228 18.1826C18.9681 18.1417 19.2674 17.9242 19.4131 17.6084L21.0919 13.9687Z" fill="#C9A85C"/>
+            <path d="M29.875 10.5H14.125L8 18.7681L22 33.5L36 18.7681L29.875 10.5Z" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 18.7451H36" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.8571 10.5L16 18.9038L22 33.5" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24.1429 10.5L28 18.9038L22 33.5" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <span class="bn num">01</span>
       </div>
       <div>
-        <h4>코나 웰컴 마일리지</h4>
-        <p>1년차 20,000마일리지 즉시 지급<span class="m-hide"> · </span><br class="m-br">2~5년차 매년 10,000마일리지 즉시 적립</p>
+        <h4>더한옥헤리티지</h4>
+        <p>더한옥헤리티지 호텔 30% / 독채 20% 숙박 할인</p>
       </div>
     </div>
 
-    <div class="b-item rv">
+    <div class="b-item b-item-mile rv">
       <div class="b-left">
         <div class="b-icon">
           <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -364,26 +512,26 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
         <span class="bn num">02</span>
       </div>
       <div>
-        <h4>코나 마일리지 적립</h4>
-        <p>결제금액 2,000원당 1마일리지,<br class="m-br">연 최대 50,000마일리지<br class="d-br"> 적립된 마일리지는<br class="m-br">항공권 · 골프 패키지 등으로 교환</p>
-      </div>
-    </div>
-
-    <div class="b-item rv">
-      <div class="b-left">
-        <div class="b-icon">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M29.875 10.5H14.125L8 18.7681L22 33.5L36 18.7681L29.875 10.5Z" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 18.7451H36" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M19.8571 10.5L16 18.9038L22 33.5" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M24.1429 10.5L28 18.9038L22 33.5" stroke="#C9A85C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <h4>코나 웰컴 마일리지</h4>
+        <p>적립된 마일리지에 따라 항공권, 골프 여행 패키지 등의 혜택 제공</p>
+        <div class="b-mile-cards">
+          <div class="bm-card">
+            <p class="bm-card-label">웰컴 마일리지</p>
+            <p>1년차 : 20,000마일리지 즉시 지급<br>2~5년차 : 매년 10,000마일리지 즉시 지급</p>
+          </div>
+          <div class="bm-card bm-gold">
+            <p class="bm-card-label">결제 적립</p>
+            <p>2,000원 당 1마일리지</p>
+            <span class="bm-accent">연간 최대 50,000마일리지</span>
+          </div>
+          <div class="bm-card bm-full">
+            <p class="bm-card-label">연간 통합 한도</p>
+            <p>1년차 최대 70,000 &nbsp;|&nbsp; 2~5년차 최대 60,000 &nbsp;|&nbsp; 5년간 최대 310,000마일리지</p>
+          </div>
         </div>
-        <span class="bn num">03</span>
-      </div>
-      <div>
-        <h4>프리미엄 한옥호텔 할인</h4>
-        <p>더한옥헤리티지 30% 숙박할인,<br class="m-br">연 최대 100만 원 (강원도 영월)</p>
+        <button class="mile-btn" onclick="openMileModal()">
+          마일리지 정책 확인하기
+        </button>
       </div>
     </div>
 
@@ -431,18 +579,309 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
 
   <div class="fee-wrap rv">
     <dl class="fee">
-      <div><dt>Annual Fee · 연회비</dt><dd>1,000,000원</dd></div>
-      <div><dt>Card Price · 구매 비용</dt><dd>5,000,000원</dd></div>
+      <div><dt>Annual Fee · 연회비</dt><dd>2,000,000원</dd></div>
     </dl>
+    <p class="b-note">* 본 혜택은 연회비 결제 시 제공되는 혜택입니다.</p>
   </div>
-  <p class="b-note">* 카드 구매 비용은 디자인 및 구매 옵션에<br class="m-br"> 따라 상이하며, 세부 혜택은 변경될 수 있습니다.</p>
 </section>
+
+<!-- ============ MILEAGE MODAL ============ -->
+<div class="mile-modal" id="mileModal">
+  <div class="mile-overlay" onclick="document.getElementById('mileModal').classList.remove('open')"></div>
+  <div class="mile-box">
+    <div class="mile-handle"></div>
+    <div class="mile-header">
+      <div class="mile-header-row">
+        <h2 class="mile-title">마일리지 정책</h2>
+        <button class="mile-close" onclick="document.getElementById('mileModal').classList.remove('open')" aria-label="닫기">×</button>
+      </div>
+    </div>
+    <!-- Tab nav -->
+    <div class="mile-tabs" id="mileTabs">
+      <button class="mile-tab active" data-tab="0">운영 정책</button>
+      <button class="mile-tab" data-tab="1">항공권 마일리지</button>
+      <button class="mile-tab" data-tab="2">적립<br class="m-br">제외 업종</button>
+      <button class="mile-tab" data-tab="3">유의사항</button>
+    </div>
+    <!-- Panels -->
+    <div class="mile-panels">
+
+      <!-- Panel 0: 운영 정책 -->
+      <div class="mile-panel active" data-panel="0">
+
+        <!-- 마일리지 적립 -->
+        <div class="mile-sec">
+          <p class="mile-sec-h">마일리지 적립</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr>
+                <td>적립 기준 및 한도</td>
+                <td>
+                  <b class="mile-td-h">결제 금액 2,000원당 1마일리지 적립</b><br>
+                  <span style="color:#666666;font-size:14px;line-height:1.9">· 연 최대 50,000마일리지 적립<br>
+                  · 통합 마일리지 적립 한도 : 1년차 최대 70,000마일리지 / 2~5년차 최대 60,000마일리지</span><br><br>
+                  <b class="mile-td-h">웰컴 코나 마일리지 제공</b><br>
+                  <span style="color:#666666;font-size:14px;line-height:1.9">· 1년차 : 20,000마일리지 즉시 지급<br>
+                  · 2~5년차 : 10,000마일리지 즉시 지급</span>
+                </td>
+              </tr>
+              <tr><td>적립 시점</td><td>결제 즉시 적립</td></tr>
+              <tr><td>유효기간</td><td>적립일로부터 5년</td></tr>
+              <tr><td>적립 단위</td><td>카드 단위로 마일리지 적립 및 관리되며, 카드별로 마일리지가 구분됩니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 마일리지 소멸 -->
+        <div class="mile-sec">
+          <p class="mile-sec-h">마일리지 소멸</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr>
+                <td>소멸 기준</td>
+                <td>
+                  <b class="mile-td-h">카드 해지시 :</b><br>
+                  <span style="color:#666666;font-size:14px;line-height:1.9">· 마일리지 소멸 안됨<br>· 잔여 마일리지는 유효기간 내 사용 가능</span><br><br>
+                  <b class="mile-td-h">회원 탈퇴시 :</b><br>
+                  <span style="color:#666666;font-size:14px;line-height:1.9">· 마일리지 소멸됨</span>
+                </td>
+              </tr>
+              <tr><td>환불</td><td>환불 불가능</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 상품 구매 정책 -->
+        <div class="mile-sec">
+          <p class="mile-sec-h">상품 구매 정책</p>
+          <div class="mile-sec-body">
+            <p class="mile-sec-desc">적립된 마일리지로 항공권 구매가 가능합니다. 항공권 예약은 고객센터를 통해 신청하실 수 있으며, 운영 방식이 변동될 시 별도 공지해 드립니다.</p>
+            <table class="mile-ptbl">
+              <tr><td>구매가능 항목</td><td>항공권 (대한항공)</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 항공권 구매 정책 -->
+        <div class="mile-sec">
+          <p class="mile-sec-h">항공권 구매 정책</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr>
+                <td>구매가능 출발일</td>
+                <td>
+                  <span style="color:#666666;font-size:14px;line-height:1.9">· 출발일 90일 이전까지 구매가능합니다.<br>· 성수기의 경우 추가 마일리지가 필요할 수 있습니다.</span>
+                </td>
+              </tr>
+              <tr>
+                <td>구매가능 노선</td>
+                <td><span style="color:#666666;font-size:14px;line-height:1.9">· 마일리지 구매 가능 지역 및 제휴처는 당사 사정에 따라 확대 또는 변경될 수 있습니다.</span></td>
+              </tr>
+              <tr>
+                <td>본인부담 항목</td>
+                <td><span style="color:#666666;font-size:14px;line-height:1.9">· 순수항공권 외 세금, 수수료 및 기타 요금, 유류할증료, 취소수수료 등 부대비용은 본인부담입니다. 노선·시기별로 상이할 수 있으며 항공사 정책에 따릅니다.</span></td>
+              </tr>
+              <tr>
+                <td>성수기<br>기간</td>
+                <td>
+                  <p style="font-size:14px;color:#666666;margin:0 0 8px">※ 대한항공 국제선(미주 출발 외) 기준 / 각 항공사 공지 기준에 따라 변경될 수 있습니다.</p>
+                  <table style="width:100%;border-collapse:collapse;font-size:14px">
+                    <thead>
+                      <tr style="background:rgba(201,168,92,.1)">
+                        <th style="padding:6px 5px;text-align:left;font-weight:600;color:var(--ink);border:1px solid rgba(36,27,18,.1);width:1%;white-space:nowrap">월</th>
+                        <th style="padding:6px 8px;text-align:left;font-weight:600;color:var(--ink);border:1px solid rgba(36,27,18,.1)">2026년</th>
+                        <th style="padding:6px 8px;text-align:left;font-weight:600;color:var(--ink);border:1px solid rgba(36,27,18,.1)">2027년</th>
+                      </tr>
+                    </thead>
+                    <tbody style="color:var(--ink-soft)">
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">1월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">01.02. ~ 01.11.</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">01.02. ~ 01.11.</td></tr>
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">2월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">02.13. ~ 02.22.<br>02.27. ~ 02.28.</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">02.05. ~ 02.09.</td></tr>
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">3월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">03.01. ~ 03.02.</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">—</td></tr>
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">4월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">—</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">04.30. ~ 04.30.</td></tr>
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">5월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">05.01. ~ 05.05.</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">05.01. ~ 05.05.<br>05.13. ~ 05.16.</td></tr>
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">7월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">07.24. ~ 07.31.</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">07.24. ~ 07.31.</td></tr>
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">8월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">08.01. ~ 08.16.</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">08.01. ~ 08.18.</td></tr>
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">9월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">09.23. ~ 09.27.</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">09.10. ~ 09.19.</td></tr>
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">10월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">10.02. ~ 10.05.<br>10.08. ~ 10.11.</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">10.01. ~ 10.04.<br>10.08. ~ 10.11.</td></tr>
+                      <tr><td style="padding:5px 5px;border:1px solid rgba(36,27,18,.08);white-space:nowrap">12월</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">12.25. ~ 12.27.</td><td style="padding:5px 8px;border:1px solid rgba(36,27,18,.08)">—</td></tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>예약 불가</td>
+                <td><span style="color:#666666;font-size:14px;line-height:1.9">· 항공사의 좌석 상황에 따라 희망하는 일정에 예약이 불가능할 수 있습니다.</span></td>
+              </tr>
+              <tr>
+                <td>연회비<br>미납</td>
+                <td><span style="color:#666666;font-size:14px;line-height:1.9">· 연회비를 미납한 경우 마일리지 사용이 제한됩니다.<br>· 마일리지를 사용하여 항공권을 구매한 경우에는 영향을 미치지 않습니다.</span></td>
+              </tr>
+              <tr><td>해지 시</td><td><span style="color:#666666;font-size:14px;line-height:1.9">· 잔여 마일리지는 유효기간 내 사용 가능합니다.</span></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 마일리지 사용 -->
+        <div class="mile-sec">
+          <p class="mile-sec-h">마일리지 사용</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr><td>사용 순서</td><td>먼저 쌓은 마일리지부터 먼저 사용</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Panel 1: 항공권 마일리지 안내 -->
+      <div class="mile-panel" data-panel="1">
+
+        <!-- 노선별 마일리지 -->
+        <div class="mile-sec">
+          <p class="mile-sec-h">항공권 마일리지 안내 <span style="font-size:14px;font-weight:400;color:var(--ink-soft);letter-spacing:.01em">(대한항공 · 비즈니스 · 편도 기준)</span></p>
+          <div class="mile-sec-body">
+            <table class="mile-rtbl">
+              <thead><tr><th>노선</th><th>필요 마일리지</th></tr></thead>
+              <tbody>
+                <tr><td>오사카</td><td>30,000</td></tr>
+                <tr><td>대만</td><td>35,000</td></tr>
+                <tr><td>상하이 (푸동)</td><td>35,000</td></tr>
+                <tr><td>홍콩</td><td>45,000</td></tr>
+                <tr><td>도쿄 (나리타)</td><td>45,000</td></tr>
+                <tr><td>필리핀 (세부)</td><td>55,000</td></tr>
+                <tr><td>베이징</td><td>55,000</td></tr>
+                <tr><td>태국 (방콕)</td><td>65,000</td></tr>
+                <tr><td>베트남 (다낭)</td><td>65,000</td></tr>
+                <tr><td>인도네시아 (발리)</td><td>95,000</td></tr>
+                <tr><td>하와이</td><td>200,000</td></tr>
+                <tr><td>영국</td><td>200,000</td></tr>
+                <tr><td>프랑스</td><td>230,000</td></tr>
+                <tr><td>독일</td><td>250,000</td></tr>
+                <tr><td>스위스</td><td>250,000</td></tr>
+              </tbody>
+            </table>
+            <div style="font-size:14px;color:#666666;line-height:1.9;padding:10px 14px;border-top:1px solid rgba(36,27,18,.08)">
+              <p>＊ 한국 출발 편도 기준, 대한항공 비즈니스석(프레스티지) 기준입니다.</p>
+              <p>＊ 마일리지 차감 외 유류할증료·세금·수수료 등 부대비용은 본인 부담입니다.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Panel 2: 적립 제외 업종 -->
+      <div class="mile-panel" data-panel="2">
+        <div class="mile-sec">
+          <p class="mile-sec-h">마일리지 적립 제외 업종</p>
+          <div class="mile-sec-body">
+            <p class="mile-sec-desc">아래 업종에서의 결제는 마일리지가 적립되지 않습니다.<br>업종 분류는 가맹점 정보에 따라 적용되며, 사전 고지 없이 변경될 수 있습니다.</p>
+            <table class="mile-ptbl">
+              <tr>
+                <td>상품권 · 자동판매기</td>
+                <td>전자상거래상품권 · 전자상거래PG상품권 · 전자상거래오픈마켓상품권<br>· 종교상품점 상품권 · 상품권 · 자동판매기 운영업</td>
+              </tr>
+              <tr>
+                <td>교육</td>
+                <td>초·중·고등학교 · 대학·대학원 · 대학·대학원 (등록금) · 초중고 학교납입금 (자동납부)</td>
+              </tr>
+              <tr>
+                <td>보험 · 공과금 · 세금</td>
+                <td>기타 보험 · 공과금 · 전기·수도관리비 · 국세 · 지방세</td>
+              </tr>
+              <tr>
+                <td>교통 (RF)</td>
+                <td>RF 대중교통 · RF 유통기관 · RF 유료도로·터널 · RF 공항버스 · RF 기타 운송수단</td>
+              </tr>
+              <tr>
+                <td>바우처 · 부동산</td>
+                <td>바우처 · KB HOUSTAR · KB 부동산임대·관리 · 바우처 (가사간병)</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: 유의사항 -->
+      <div class="mile-panel" data-panel="3">
+
+        <div class="mile-sec">
+          <p class="mile-sec-h">기본 안내</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr><td>예약 기준</td><td>한국 출발 편도 기준이며, 항공권 마일리지 구매는 출발일 기준 90일 이전까지 신청 가능합니다.</td></tr>
+              <tr><td>좌석 제한</td><td>항공사의 마일리지 보너스 좌석은 수량이 제한되어 있으며, 희망 날짜·노선에 따라 예약이 불가능할 수 있습니다. 특히 성수기에는 출발 90일 이전 신청을 권장합니다.</td></tr>
+              <tr><td>조기 마감</td><td>성수기나 주말 등 수요 집중 기간에는 예약이 일찍 마감될 수 있습니다.</td></tr>
+              <tr><td>노선 변경</td><td>노선 변경은 불가하며, 취소 후 재신청해야 합니다.</td></tr>
+              <tr><td>연회비 미납</td><td>연회비 미납 시 마일리지 사용(항공권 신청 포함)이 제한될 수 있습니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mile-sec">
+          <p class="mile-sec-h">세금 · 유류할증료</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr><td>본인 부담</td><td>마일리지 차감 후 발생하는 세금, 수수료, 유류할증료는 고객 본인 부담입니다. (노선·시기별 상이)</td></tr>
+              <tr><td>기준 변동</td><td>세금 및 유류할증료는 각 항공사 기준에 따르며, 이용 좌석·여정·환율 및 항공사 규정에 따라 변동될 수 있습니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mile-sec">
+          <p class="mile-sec-h">성수기 안내</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr><td>기간 변동</td><td>성수기 기간은 노선별로 다르며 매년 변경됩니다. 각 항공사 공지 기준에 따릅니다.</td></tr>
+              <tr><td>예약 제한</td><td>성수기 기간에는 마일리지 차감 금액이 증가하거나 예약이 제한될 수 있습니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mile-sec">
+          <p class="mile-sec-h">변경 안내</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr><td>일정 변경</td><td>변경하는 구간 또는 일정에 따라 변경이 제한되거나 추가 마일리지·세금·유류할증료가 부과될 수 있습니다.</td></tr>
+              <tr><td>수수료</td><td>항공권 서비스 변경 시 수수료가 부과될 수 있습니다. 노선 변경은 불가하며 취소 후 재신청해야 합니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mile-sec">
+          <p class="mile-sec-h">취소 · 환불 안내</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr><td>취소 신청</td><td>취소 신청은 고객센터를 통해서만 가능합니다.</td></tr>
+              <tr><td>예약부도</td><td>항공편 출발 이전 사전 예약 취소 없이 미탑승하거나 탑승 수속 후 탑승하지 않는 경우 예약부도위약금이 부과됩니다. (각 항공사 기준)</td></tr>
+              <tr><td>세금 환불</td><td>항공권 환불 시 미사용 구간의 세금 및 유류할증료는 결제 수단으로 환불됩니다.</td></tr>
+              <tr><td>취소 수수료</td><td>취소 수수료는 본인 부담입니다.</td></tr>
+              <tr><td>마일리지 환급</td><td>환불 시 사용된 마일리지는 유효기간 그대로 환급되며, 유효기간이 지난 마일리지는 소멸되어 환급되지 않습니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mile-sec">
+          <p class="mile-sec-h">정책 변경 고지</p>
+          <div class="mile-sec-body">
+            <table class="mile-ptbl">
+              <tr><td>검토 주기</td><td>마일리지 항공권 운영 정책(노선, 차감 마일리지, 성수기 기간 등)은 반기마다 검토되며, 항공사 및 당사 사정에 따라 변경될 수 있습니다.</td></tr>
+              <tr><td>사전 안내</td><td>정책 변경 시 시행일 기준 30일 전 앱 내 공지 또는 문자를 통해 사전 안내드립니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /mile-panels -->
+  </div>
+</div>
 
 <!-- ============ CONSULTATION ============ -->
 <section class="consult" id="consultation">
   <div class="wrap">
     <p class="eyebrow rv">Consultation</p>
-    <h2 class="rv d1">전담 매니저가<br>직접 연락드립니다</h2>
+    <h2 class="rv d1">상담 신청</h2>
+    <p class="c-sub rv d2">아래 정보를 남겨주시면 전담 매니저가 직접 연락드립니다.</p>
     <form class="c-form rv" onsubmit="return false">
       <div class="c-row">
         <div class="c-field">
@@ -458,6 +897,45 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
         <label>이메일</label>
         <input type="email" placeholder="example@email.com">
       </div>
+      <div class="c-row">
+        <div class="c-field">
+          <label>상담 희망 일자</label>
+          <div class="c-date-wrap">
+            <input type="text" id="cDateInput" placeholder="날짜를 선택해 주세요" readonly onclick="toggleCal(event)">
+            <div class="c-cal" id="cCal">
+              <div class="c-cal-nav">
+                <button type="button" onclick="moveCal(-1)">&#8249;</button>
+                <span id="cCalTitle"></span>
+                <button type="button" onclick="moveCal(1)">&#8250;</button>
+              </div>
+              <div class="c-cal-days">
+                <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+              </div>
+              <div class="c-cal-cells" id="cCalCells"></div>
+            </div>
+          </div>
+        </div>
+        <div class="c-field">
+          <label>시간</label>
+          <div class="c-time-wrap">
+            <button type="button" class="c-time-btn" id="cTimeBtn" onclick="toggleTime(event)">
+              <span id="cTimeTxt">시간을 선택해 주세요</span>
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#5A4D3E" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="c-time-drop" id="cTimeDrop">
+              <div class="c-time-opt" data-val="09:00" onclick="pickTime(this)">오전 9시 &nbsp;<span style="color:#999;font-size:14px">(09:00)</span></div>
+              <div class="c-time-opt" data-val="10:00" onclick="pickTime(this)">오전 10시 &nbsp;<span style="color:#999;font-size:14px">(10:00)</span></div>
+              <div class="c-time-opt" data-val="11:00" onclick="pickTime(this)">오전 11시 &nbsp;<span style="color:#999;font-size:14px">(11:00)</span></div>
+              <div class="c-time-opt" data-val="12:00" onclick="pickTime(this)">오후 12시 &nbsp;<span style="color:#999;font-size:14px">(12:00)</span></div>
+              <div class="c-time-opt" data-val="13:00" onclick="pickTime(this)">오후 1시 &nbsp;<span style="color:#999;font-size:14px">(13:00)</span></div>
+              <div class="c-time-opt" data-val="14:00" onclick="pickTime(this)">오후 2시 &nbsp;<span style="color:#999;font-size:14px">(14:00)</span></div>
+              <div class="c-time-opt" data-val="15:00" onclick="pickTime(this)">오후 3시 &nbsp;<span style="color:#999;font-size:14px">(15:00)</span></div>
+              <div class="c-time-opt" data-val="16:00" onclick="pickTime(this)">오후 4시 &nbsp;<span style="color:#999;font-size:14px">(16:00)</span></div>
+              <div class="c-time-opt" data-val="17:00" onclick="pickTime(this)">오후 5시 &nbsp;<span style="color:#999;font-size:14px">(17:00)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="c-field">
         <label>문의 내용</label>
         <textarea placeholder="관심 카드, 문의 사항을 자유롭게 작성해 주세요."></textarea>
@@ -467,10 +945,29 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
           <input type="checkbox" class="c-agree-chk">
           <span class="c-agree-txt">개인정보 수집·이용에 동의합니다.<span class="req-tag">(필수)</span></span>
         </label>
-        <p class="c-agree-desc">수집 항목: 성함, 연락처, 이메일, 문의 내용 &nbsp;/&nbsp; 목적: 구매 상담 연결 &nbsp;/&nbsp; 보유: 상담 완료 후 1년</p>
+        <label class="c-agree-row" style="margin-top:4px">
+          <input type="checkbox" class="c-agree-chk">
+          <span class="c-agree-txt">마케팅 정보 수신에 동의합니다.</span>
+        </label>
+        <p class="c-agree-desc">주얼리카드 혜택, 더한옥헤리티지 멤버십 안내 및 프로모션 정보를 SMS 및 이메일로 수신하는 데 동의합니다.</p>
       </div>
       <button class="c-btn" type="submit">상담 신청하기</button>
     </form>
+  </div>
+</section>
+
+<section class="notice">
+  <div class="notice-inner">
+    <p class="notice-title">카드 이용 안내</p>
+    <div class="notice-box">
+      <div class="notice-group">
+        <p class="notice-group-title">카드 이용 안내</p>
+        <ul>
+          <li>자주 이용하는 계좌와 연결하여 사용하실 수 있는 직불 카드로, 전국 어디서나 체크카드처럼 사용하실 수 있습니다.</li>
+          <li>카드 혜택은 발급 시점부터 바로 이용할 수 있으며, 연회비는 발급 다음 날 등록된 계좌를 통해 자동 납부됩니다.<br>연회비가 정상 납부되지 않을 경우 서비스 이용이 제한될 수 있으며, 완납 시 즉시 혜택이 재개됩니다.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -638,11 +1135,6 @@ CARDS.forEach((c,i)=>{
               </div>`).join('')}
           </div>
         </div>
-        <dl class="spec">
-          <div class="row"><dt>재질</dt><dd>스테인리스 메탈 (SUS 304 3/4H) · 천연자개</dd></div>
-          <div class="row"><dt>도금</dt><dd>Bright Gold / Pure Gold / White Gold / Rose Gold</dd></div>
-          <div class="row"><dt>다이아몬드</dt><dd>랩그로운 다이아몬드 ${c.dia}</dd></div>
-        </dl>
       </div>
     </div>`;
   panelsEl.appendChild(p);
@@ -772,6 +1264,113 @@ if(minhwaStage) minhwaIO.observe(minhwaStage);
 /* nav */
 const nav = document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+/* mileage modal tabs */
+document.querySelectorAll('.mile-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const idx = btn.dataset.tab;
+    document.querySelectorAll('.mile-tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.mile-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector('.mile-panel[data-panel="'+idx+'"]').classList.add('active');
+    document.querySelector('.mile-panels').scrollTop = 0;
+  });
+});
+/* reset tabs when modal opens */
+document.getElementById('mileModal').addEventListener('transitionend',()=>{});
+function openMileModal(){
+  document.getElementById('mileModal').classList.add('open');
+  document.querySelectorAll('.mile-tab')[0].click();
+}
+
+/* ── 날짜 선택 캘린더 ── */
+(function(){
+  const MONTHS=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  let cur = new Date(); cur.setDate(1);
+  let selected = null;
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  function pad(n){return String(n).padStart(2,'0');}
+  function fmt(d){return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일';}
+
+  function render(){
+    const y=cur.getFullYear(), m=cur.getMonth();
+    document.getElementById('cCalTitle').textContent=y+'년 '+MONTHS[m];
+    const cells=document.getElementById('cCalCells');
+    cells.innerHTML='';
+    const first=new Date(y,m,1).getDay();
+    const last=new Date(y,m+1,0).getDate();
+    const prevLast=new Date(y,m,0).getDate();
+    for(let i=0;i<first;i++){
+      const d=prevLast-first+1+i;
+      const el=document.createElement('div');
+      el.className='c-cal-cell other-month disabled';
+      el.textContent=d; cells.appendChild(el);
+    }
+    for(let d=1;d<=last;d++){
+      const dt=new Date(y,m,d);
+      const el=document.createElement('div');
+      let cls='c-cal-cell';
+      if(dt<today) cls+=' disabled';
+      if(dt.toDateString()===today.toDateString()) cls+=' today';
+      if(selected&&dt.toDateString()===selected.toDateString()) cls+=' selected';
+      el.className=cls; el.textContent=d;
+      if(dt>=today) el.onclick=()=>pick(new Date(y,m,d));
+      cells.appendChild(el);
+    }
+    const remain=42-first-last;
+    for(let d=1;d<=remain;d++){
+      const el=document.createElement('div');
+      el.className='c-cal-cell other-month disabled';
+      el.textContent=d; cells.appendChild(el);
+    }
+  }
+
+  function pick(d){
+    selected=d;
+    document.getElementById('cDateInput').value=fmt(d);
+    closeCal();
+  }
+
+  function closeCal(){document.getElementById('cCal').classList.remove('open');}
+
+  window.toggleCal=function(e){
+    e.stopPropagation();
+    const cal=document.getElementById('cCal');
+    const isOpen=cal.classList.contains('open');
+    if(isOpen){closeCal();}else{render();cal.classList.add('open');}
+  };
+  window.moveCal=function(dir){
+    cur.setMonth(cur.getMonth()+dir); render();
+  };
+  document.addEventListener('click',function(e){
+    const wrap=document.querySelector('.c-date-wrap');
+    if(wrap&&!wrap.contains(e.target))closeCal();
+    const tw=document.querySelector('.c-time-wrap');
+    if(tw&&!tw.contains(e.target))closeTime();
+  });
+})();
+
+/* ── 시간 커스텀 드롭다운 ── */
+function toggleTime(e){
+  e.stopPropagation();
+  const btn=document.getElementById('cTimeBtn');
+  const drop=document.getElementById('cTimeDrop');
+  const isOpen=drop.classList.contains('open');
+  if(isOpen){closeTime();}else{drop.classList.add('open');btn.classList.add('open');}
+}
+function closeTime(){
+  document.getElementById('cTimeDrop').classList.remove('open');
+  document.getElementById('cTimeBtn').classList.remove('open');
+}
+function pickTime(el){
+  const label=el.childNodes[0].textContent.trim();
+  document.getElementById('cTimeTxt').textContent=label;
+  document.getElementById('cTimeBtn').classList.add('selected-val');
+  document.querySelectorAll('.c-time-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  closeTime();
+}
 </script>
 </body>
 </html>
