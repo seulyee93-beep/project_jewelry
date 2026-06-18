@@ -58,6 +58,15 @@ nav ul{display:flex;gap:36px;list-style:none}
 nav a{color:var(--cream-dim);text-decoration:none;font-size:15px;letter-spacing:.18em;transition:color .3s}
 nav a:hover{color:var(--gold)}
 @media(max-width:640px){nav ul{display:none}}
+.nav-inquiry{display:none}
+@media(max-width:640px){
+  .nav-inquiry{
+    display:flex;align-items:center;
+    color:var(--cream-dim);font-size:15px;letter-spacing:.18em;
+    text-decoration:none;transition:color .3s;white-space:nowrap;
+  }
+  .nav-inquiry:hover{color:var(--gold);}
+}
 
 /* ============ HERO ============ */
 .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -349,13 +358,13 @@ nav a:hover{color:var(--gold)}
 .mile-link:hover{background:rgba(36,27,18,.05)}
 
 /* fee box */
-.fee-wrap{max-width:780px;margin:80px auto 0;padding:52px 56px 44px;background:rgba(201,168,92,.11);border-radius:4px}
-@media(max-width:640px){.fee-wrap{margin:60px 24px 0;padding:40px 28px 36px}}
+.fee-wrap{max-width:780px;margin:80px auto 0;padding:56px 0 48px;background:transparent;border:none;border-top:1px solid rgba(201,168,92,.3);border-bottom:1px solid rgba(201,168,92,.3);text-align:center}
+@media(max-width:640px){.fee-wrap{margin:60px 24px 0;padding:44px 0 40px}}
 .fee{display:flex;gap:clamp(40px,8vw,120px);justify-content:center;flex-wrap:wrap;text-align:center}
 @media(min-width:640px){.fee{flex-wrap:nowrap;align-items:center}}
-.fee dt{font-size:15px;letter-spacing:.3em;color:var(--cream-dim);text-transform:uppercase}
-.fee dd{margin-top:4px;font-size:clamp(28px,3.4vw,38px);font-weight:500;color:var(--gold)}
-.b-note{font-size:14px;color:rgba(239,230,210,.4);font-weight:300;text-align:center;margin-top:28px;padding:0}
+.fee dt{font-size:13px;letter-spacing:.35em;color:var(--cream-dim);text-transform:uppercase}
+.fee dd{margin-top:4px;font-size:clamp(28px,3.2vw,38px);font-weight:700;color:var(--gold);letter-spacing:-.02em}
+.b-note{font-size:13px;color:rgba(239,230,210,.35);font-weight:300;text-align:center;margin-top:24px;padding:0}
 @media(max-width:640px){.b-note{margin-top:20px}}
 
 /* consultation */
@@ -432,6 +441,28 @@ footer p{margin-top:16px;font-size:15px;line-height:1.8;color:rgba(239,230,210,.
 footer .footer-en{font-size:15px;letter-spacing:.08em;color:#efe6d2;margin-top:12px}
 footer .footer-ko{font-size:14px;color:#efe6d2;margin-top:4px}
 footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;letter-spacing:.04em}
+/* benefit floating tab bar (mobile only) */
+.b-float-bar{display:none}
+@media(max-width:640px){
+  .b-float-bar{
+    display:flex;flex-direction:row;align-items:center;
+    position:fixed;top:auto;bottom:20px;left:50%;transform:translateX(-50%);
+    background:rgba(30,22,14,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-radius:50px;padding:5px 6px;gap:2px;z-index:200;
+    box-shadow:0 4px 24px rgba(0,0,0,.5);border:1px solid rgba(201,168,92,.2);
+    width:calc(100% - 40px);max-width:400px;height:52px;box-sizing:border-box;
+    opacity:1;transition:opacity .4s ease;
+  }
+  .b-float-bar.hidden{opacity:0;pointer-events:none;}
+  .b-float-btn{
+    flex:1;height:42px;padding:0 4px;border:none;background:transparent;
+    color:rgba(239,230,210,.55);font-size:13px;font-family:inherit;
+    letter-spacing:.02em;cursor:pointer;border-radius:40px;transition:.2s;
+    white-space:nowrap;display:flex;align-items:center;justify-content:center;
+  }
+  .b-float-btn.active{background:var(--gold-deep);color:#fff;font-weight:600;}
+  .b-float-btn:not(.active):hover{color:rgba(239,230,210,.9);}
+}
 </style>
 </head>
 <body>
@@ -444,6 +475,7 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
       <li><a href="#signature">SIGNATURE</a></li>
       <li><a href="#benefits">BENEFIT</a></li>
     </ul>
+    <a class="nav-inquiry" href="#consultation">문의</a>
   </div>
 </nav>
 
@@ -512,7 +544,7 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
         <span class="bn num">01</span>
       </div>
       <div>
-        <h4>더한옥헤리티지</h4>
+        <span id="benefit-hanok" style="position:relative;top:-80px;display:block;visibility:hidden;pointer-events:none"></span><h4>더한옥헤리티지</h4>
         <p>더한옥헤리티지 호텔 30% / 독채 20%<br class="m-br"> 숙박 할인</p>
       </div>
     </div>
@@ -528,7 +560,7 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
         <span class="bn num">02</span>
       </div>
       <div>
-        <h4>코나마일리지 적립</h4>
+        <span id="benefit-mile" style="position:relative;top:-80px;display:block;visibility:hidden;pointer-events:none"></span><h4>코나마일리지 적립</h4>
         <p>적립된 마일리지에 따라 항공권,<br class="m-br"> 골프 여행 패키지 등의 혜택 제공</p>
         <div class="b-mile-cards">
           <div class="bm-card">
@@ -568,7 +600,7 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
         <span class="bn num">04</span>
       </div>
       <div>
-        <h4>공항 라운지</h4>
+        <span id="benefit-lounge" style="position:relative;top:-80px;display:block;visibility:hidden;pointer-events:none"></span><h4>공항 라운지</h4>
         <p>연 4회 무료 이용권</p>
         <div class="bm-card bm-full" style="margin-top:12px">
           <span class="bm-accent" style="margin-top:0;margin-bottom:8px">인천 / 김포 / 김해</span>
@@ -594,7 +626,7 @@ footer .footer-copy{font-size:12px;color:rgba(239,230,210,.45);margin-top:32px;l
         <span class="bn num">05</span>
       </div>
       <div>
-        <h4>무료 발레파킹 서비스</h4>
+        <span id="benefit-valet" style="position:relative;top:-80px;display:block;visibility:hidden;pointer-events:none"></span><h4>무료 발레파킹 서비스</h4>
         <p>발레파킹 서비스 이용료 연 30만 원 한도</p>
         <div class="bm-card bm-full" style="margin-top:12px">
           <span class="bm-accent" style="margin-top:0;margin-bottom:8px">호텔</span>
@@ -1395,6 +1427,59 @@ function pickTime(el){
   el.classList.add('active');
   closeTime();
 }
+
+/* ── benefit floating tab bar ── */
+(function(){
+  const TABS = [
+    {id:'benefit-hanok',  label:'더한옥'},
+    {id:'benefit-mile',   label:'마일리지'},
+    {id:'benefit-lounge', label:'공항라운지'},
+    {id:'benefit-valet',  label:'발레파킹'},
+  ];
+  const bar = document.createElement('div');
+  bar.className = 'b-float-bar hidden';
+  TABS.forEach((t,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'b-float-btn' + (i===0?' active':'');
+    btn.textContent = t.label;
+    btn.onclick = ()=>{
+      const el = document.getElementById(t.id);
+      if(!el) return;
+      window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth'});
+      bar.querySelectorAll('.b-float-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+    };
+    bar.appendChild(btn);
+  });
+  document.body.appendChild(bar);
+
+  /* active tab on scroll */
+  const btns = bar.querySelectorAll('.b-float-btn');
+  window.addEventListener('scroll', ()=>{
+    let current = 0;
+    TABS.forEach((t,i)=>{
+      const el = document.getElementById(t.id);
+      if(el && el.getBoundingClientRect().top <= 120) current = i;
+    });
+    btns.forEach((b,i)=>b.classList.toggle('active', i===current));
+  }, {passive:true});
+
+  /* show when benefits visible */
+  const benefitsEl = document.querySelector('.benefits');
+  if(benefitsEl){
+    new IntersectionObserver(entries=>{
+      bar.classList.toggle('hidden', !entries[0].isIntersecting);
+    },{threshold:0}).observe(benefitsEl);
+  }
+
+  /* fade out when consult section appears */
+  const consultEl = document.querySelector('.consult');
+  if(consultEl){
+    new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting) bar.classList.add('hidden');
+    },{threshold:0}).observe(consultEl);
+  }
+})();
 </script>
 </body>
 </html>
